@@ -9,5 +9,6 @@
 </head>
 <body>
 <s:property value="message"/>
+<s:property value="userId"/>
 </body>
 </html>

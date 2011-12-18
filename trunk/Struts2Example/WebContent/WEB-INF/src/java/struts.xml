@@ -16,7 +16,7 @@
 		<action name="sayhello" class="doc.Login">
 		<result name="input">/jsp/Login.jsp</result>
 		<result name="error">/jsp/response.jsp</result>
-			<result name="success">/jsp/response.jsp</result>
+			<result name="success">/jsp/Homepage.jsp</result>
 		</action>
 
 	</package>

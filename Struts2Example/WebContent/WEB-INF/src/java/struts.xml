@@ -9,12 +9,12 @@
 			<result name="success">/index.jsp</result>
 		</action>
 
-		<action name="entername">
-			<result>/jsp/nameInput.jsp</result>
+		<action name="login">
+			<result>/jsp/Login.jsp</result>
 		</action>
 
 		<action name="sayhello" class="doc.Login">
-		<result name="input">/jsp/nameInput.jsp</result>
+		<result name="input">/jsp/Login.jsp</result>
 		<result name="error">/jsp/response.jsp</result>
 			<result name="success">/jsp/response.jsp</result>
 		</action>

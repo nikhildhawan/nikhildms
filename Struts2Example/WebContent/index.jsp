@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<META HTTP-EQUIV="refresh" CONTENT="0;URL=entername.action">
+<META HTTP-EQUIV="refresh" CONTENT="0;URL=login.action">
 <title>Hello world</title>
 </head>
 <body>

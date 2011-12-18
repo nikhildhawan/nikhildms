@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <META HTTP-EQUIV="refresh" CONTENT="0;URL=login.action">
-<title>Hello world</title>
+<title>Document Management System</title>
 </head>
 <body>
 <h1>Loading...</h1>

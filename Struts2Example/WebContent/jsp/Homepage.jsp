@@ -1,94 +1,243 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>SendMeFirst.com</title>
+<link rel="stylesheet" href="/Struts2Example/media/css/screen.css?v=12172203" type="text/css" media="screen, projection" /> 
 </head>
 <body>
 
-<div id="wrap">
-			<div id="main" class="clearfix">
-                <style type="text/css"> 
-	.header { background:url(/media/images/header-gradient.png) #f5f5f5 repeat-x left bottom; height:60px;
-		border-bottom:1px solid #ccc; }
-	.header .content { margin:0 auto; width:950px; padding: 0 26px 0 26px; text-align:left; }
-	.header .logo { float:left; }
-	.header .logo a { padding:0px; }
-	.header #logo { margin:14px 0 0; }
-	.header .navbar { float:right; margin-top:24px; font-size: 13px; font-weight:bold; cursor:default; 
-		font-family:Helvetica,Arial; text-shadow:0 1px 0 #fff; }
-	.header .navbar ul { margin:0; }
-	.header .navbar li { margin:0; float:left; list-style:none; position:relative; z-index:10; }
-	.header .navbar a { margin-left:12px; padding-left:6px; color:#615f5d; }
-	.header .navbar .divider { color:#888; }
-	.header a.user {}
+	<div id="wrap">
+		<div id="main" class="clearfix">
+			<style type="text/css">
+.header {	background: url(/media/images/header-gradient.png) #f5f5f5 repeat-x left	bottom;	height: 60px;	border-bottom: 1px solid #ccc; }
 
-	.navbar li:hover .has-subnav { text-decoration:none; background-color:#F0F0F0; padding-bottom:5px; } /*fixes hover hit-area*/
-	.navbar li:hover .subnav { display:block; }
+.header .content {margin: 0 auto;width: 950px;padding: 0 26px 0 26px;text-align: left;}
+
+.header .logo {float: left;}
+
+.header .logo a {padding: 0px;}
+
+.header #logo {	margin: 14px 0 0;}
+
+.header .navbar {float: right;margin-top: 24px;font-size: 13px;font-weight: bold;cursor: default;font-family: Helvetica, Arial;text-shadow: 0 1px 0 #fff;}
+
+.header .navbar ul {	margin: 0;}
+
+.header .navbar li {
+	margin: 0;
+	float: left;
+	list-style: none;
+	position: relative;
+	z-index: 10;
+}
+
+.header .navbar a {
+	margin-left: 12px;
+	padding-left: 6px;
+	color: #615f5d;
+}
+
+.header .navbar .divider {
+	color: #888;
+}
+
+.header a.user {
 	
-	.navbar .subnav { z-index:10; position:absolute; left:12px; top:20px; background:#F5F5F5; display:none; border: 1px solid #D1D1D1; }
-	.navbar .subnav li { width:125px; margin:1px; }
-	.navbar .subnav a { padding:2px 0; margin:0; display:block; text-decoration:none; }
-	.navbar .subnav a:hover { background-color:#dae8f9; }
+}
 
-	.feedback .has-subnav { padding-right:16px; background:url(/media/images/down-arrow.png) no-repeat right 3px; _background:none !important; _padding-right:0; }
-	.feedback .subnav a { padding-left:8px; }
+.navbar li:hover .has-subnav {
+	text-decoration: none;
+	background-color: #F0F0F0;
+	padding-bottom: 5px;
+} /*fixes hover hit-area*/
+.navbar li:hover .subnav {
+	display: block;
+}
+
+.navbar .subnav {
+	z-index: 10;
+	position: absolute;
+	left: 12px;
+	top: 20px;
+	background: #F5F5F5;
+	display: none;
+	border: 1px solid #D1D1D1;
+}
+
+.navbar .subnav li {
+	width: 125px;
+	margin: 1px;
+}
+
+.navbar .subnav a {
+	padding: 2px 0;
+	margin: 0;
+	display: block;
+	text-decoration: none;
+}
+
+.navbar .subnav a:hover {
+	background-color: #dae8f9;
+}
+
+.feedback .has-subnav {
+	padding-right: 16px;
+	background: url(/Struts2Example/media/images/down-arrow.png) no-repeat
+		right 3px;
+	_background: none !important;
+	_padding-right: 0;
+}
+
+.feedback .subnav a {
+	padding-left: 8px;
+}
+
+.navbar .subnav .no-chatback a {
+	color: #aaa;
+}
+
+.navbar .subnav .no-chatback a:hover {
+	background-color: transparent;
+	cursor: default;
+}
+
+.navbar .subnav .chatback a {
+	padding-left: 25px;
+	background-position: 5px 4px;
+	background-repeat: no-repeat;
+	background-image: url("/media/images/bullet-green.png");
+}
+
+/*Compact Header Styles*/
+.compact-header {
+	background: url(/Struts2Example/media/images/compact-header-gradient.png) #f5f5f5
+		repeat-x;
+	height: 36px;
+	border-bottom: 1px solid #d1d1d1;
+	position: relative;
+}
+
+.compact-header a{
+	text-decoration:none;
+}
+
+.compact-header a:hover{
+	text-decoration:underline;
+}
+
+.compact-header #logo {
+	margin-top: 0px;
+}
+
+.compact-header .navbar {
+	margin-top: 10px;
+}
+
+.compact-header a.mydocs-tab {
+	font-weight: bold;
+}
+
+.compact-header a.feedback-tab:hover {
+	text-decoration: none;
+}
+</style>
+
+			<div class="header compact-header">
+				<div class="content clearfix">
+					<div class="logo">
+						<a href="/Struts2Example/jsp/Homepage.jsp"><img id="logo" border="0" src="/Struts2Example/media/images/logo-small.png" alt="sendmefirst" width="200" height="42"/>
+
+						</a>
+					</div>
+					<div class="navbar">
+						<ul>
+
+							<li><a class="mydocs-tab" href="/accounts/profile/">My
+									Documents</a></li>
+
+<!-- 							<li><a href="/partner-program/">Partner Program</a></li> -->
+<!-- 							<li><a href="/api/">API</a></li> -->
+
+							<li class="feedback">
+								<!--Feedback dropdown for normal header--> <a class="has-subnav"
+								href="javascript:{}">Support</a>
+								<ul class="subnav">
+									<li><a class="email-feedback" href="javascript:{}">Send
+											Feedback</a></li>
+									<li><a href="http://crocodoc.uservoice.com"
+										target="_blank">User Forum</a></li>
+									<li class="no-chatback"><a href="javascript:{}">Chat
+											Offline</a></li>
+									<li class="chatback" style="display: none;"><a
+										href="javascript:{}">Live Chat</a></li>
+								</ul>
+							</li>
+
+							<li><a class="user" href="/accounts/profile/"><s:property value="userId"/></a><span
+								class="divider"> | </span><a href="/accounts/logout/"
+								style="margin-left: 0; padding-left: 0;">Logout</a></li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+			<style>
+	/* the overlayed element */ 
+	.overlay { background-color:#fff; display:none; padding:15px; text-align:left; border:1px solid #333;  
+	-moz-border-radius:6px; -webkit-border-radius:6px; -moz-box-shadow: 0 0 30px #333; -webkit-box-shadow: 0 0 30px #333; \width:425px; }			
 	
-	.navbar .subnav .no-chatback a { color:#aaa; }
-	.navbar .subnav .no-chatback a:hover { background-color:transparent; cursor:default; }
-	.navbar .subnav .chatback a {
-		padding-left:25px;
-		background-position:5px 4px; 
-		background-repeat:no-repeat;
-		background-image:url("/media/images/bullet-green.png"); }
+	 
+	/* close button positioned on upper right corner */ 
+	.overlay .close { background-image:url(/media/images/close.png); position:absolute; right:-15px; top:-15px; cursor:pointer; height:35px; width:35px; }
+	.overlay form { margin: 4px; }
+	.overlay h2 { margin:0 0 20px 0; padding:10px 0 10px 0; border-bottom:1px solid #ddd; font-size:20px; }
 
-	/*Compact Header Styles*/
-	.compact-header { background:url(/media/images/compact-header-gradient.png) #f5f5f5 repeat-x; height:36px; border-bottom:1px solid #d1d1d1; position:relative; }	
-	.compact-header #logo { margin-top:0px; }
-	.compact-header .navbar { margin-top:10px; }
-	.compact-header a.mydocs-tab { font-weight:bold; }
-	.compact-header a.feedback-tab:hover { text-decoration:none; }
-    
-	
-	
-	</style>
+	.feedbackOverlayLink { background: #ffe794 url("/media/images/feedback.gif") no-repeat scroll left top; cursor:pointer; display:block; height:96px; 
+		left:0; overflow:hidden; position:fixed; top:50%; margin-top:-52px; width:26px; z-index:1000; border:solid 1px #ccc; border-left:none; _display:none; }	
+	.overlay #FeedbackBox {font-size:12pt; width:400px; height:200px; }
+	.overlay #EmailBox {width:400px; font-size:12pt; }
+	.overlay .thankyou { text-align:center; font-size:18pt; margin-top:30%; }
+	.overlay #FeedbackContainerPanel { width:425px; height:420px; overflow:hidden;}
+	.overlay label { font-weight: normal; font-size: 16px; }
+</style>
 
-
-
-<div class="header compact-header"> 
-	<div class="content clearfix"> 
-		<div class="logo">
-			<a href="/">
-				
-					<img id="logo" src="/Struts2Example/media/images/logo-small.png" alt="sendmefirst" width="200" height="42" />
-				
-			</a> 
+			<div class="overlay" id="Overlay"> 
+    <div id="FeedbackContainerPanel">
+		<h2>Need help using Crocodoc?</h2> 
+		 <div id="FeedbackPanel" class="feedback-panel">
+			<form> 
+				<label for="FeedbackBox">Feedback:</label>
+				<div>			
+					<textarea id="FeedbackBox" name="feedbackbox" ></textarea>
+				</div>
+				<label for="EmailBox">Email (optional):</label>
+				<div>			
+					<input type="text" id="EmailBox" name="emailbox" />
+				</div>
+				<div id="FeedbackSubmit" style="float:right;"> 
+					<a href="javascript:{}"><img src="/media/images/button-submit.gif" alt="Submit" /></a>
+				</div> 
+				<div style="clear:both"></div>
+			</form>
 		</div>
-		<div class="navbar">
-			<ul>
-				
-				<li><a class="mydocs-tab" href="/accounts/profile/">My Documents</a></li>
-				
-				<li><a href="/partner-program/">Partner Program</a></li>
-				<li><a href="/api/">API</a></li>
-				<li class="feedback">
-					<!--Feedback dropdown for normal header-->
-					<a class="has-subnav" href="javascript:{}">Support</a>
-					<ul class="subnav">
-					<li><a class="email-feedback" href="javascript:{}">Send Feedback</a></li>
-					<li><a href="http://crocodoc.uservoice.com" target="_blank">User Forum</a></li>
-					<li class="no-chatback"><a href="javascript:{}">Chat Offline</a></li>
-					<li class="chatback" style="display:none;"><a href="javascript:{}">Live Chat</a></li>
-					</ul>
-				</li>
-				
-		  		<li><a class="user" href="/accounts/profile/">nik.dhawan</a><span class="divider"> | </span><a href="/accounts/logout/" style="margin-left:0; padding-left:0;">Logout</a></li>
-				
-			</ul>
+		<div id="ThanksPanel" class="feedback-panel">
+			<div class="thankyou">
+				Thanks! We appreciate it!
+			</div>
 		</div>
-	</div> 
+	</div>
 </div>
+			
+			
+		</div>
+	</div>
 </body>
 </html>

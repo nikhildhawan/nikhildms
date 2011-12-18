@@ -25,8 +25,17 @@ public class Login extends ActionSupport
 			rs = stmt.executeQuery(sqlQuery);
 			if (rs.next())
 			{
-				message = "Welcome to Login Screen" + getUserId();
-				return SUCCESS;
+				if (rs.getString("Password").compareTo(password) == 0)   //checking case for password.
+				{
+					// System.out.println("Actual password:" + password);
+					message = "Welcome to Login Screen" + getUserId();
+					return SUCCESS;
+				}
+				else
+				{
+					message = "Incorrect password for user " + userId + "Act pass is:" + password;
+					return ERROR;
+				}
 			}
 			else
 			{

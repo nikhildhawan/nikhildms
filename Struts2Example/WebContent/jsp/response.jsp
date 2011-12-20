@@ -10,5 +10,6 @@
 <body>
 <s:property value="message"/>
 <s:property value="userId"/>
+<s:property value="%{#session['userkey']}"/>
 </body>
 </html>

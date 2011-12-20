@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>SendMeFirst.com</title>
 <link rel="stylesheet" href="/Struts2Example/media/css/screen.css?v=12172203" type="text/css" media="screen, projection" /> 
+<script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
 </head>
 <body>
 
@@ -156,24 +157,19 @@
 					<div class="navbar">
 						<ul>
 
-							<li><a class="mydocs-tab" href="/accounts/profile/">My
-									Documents</a></li>
+							<li><a class="mydocs-tab" href="/accounts/profile/">My Documents</a></li>
 
 <!-- 							<li><a href="/partner-program/">Partner Program</a></li> -->
 <!-- 							<li><a href="/api/">API</a></li> -->
 
 							<li class="feedback">
-								<!--Feedback dropdown for normal header--> <a class="has-subnav"
-								href="javascript:{}">Support</a>
+								<!--Feedback dropdown for normal header--> 
+								<a class="has-subnav" href="javascript:{}">Support</a>
 								<ul class="subnav">
-									<li><a class="email-feedback" href="javascript:{}">Send
-											Feedback</a></li>
-									<li><a href="http://crocodoc.uservoice.com"
-										target="_blank">User Forum</a></li>
-									<li class="no-chatback"><a href="javascript:{}">Chat
-											Offline</a></li>
-									<li class="chatback" style="display: none;"><a
-										href="javascript:{}">Live Chat</a></li>
+									<li><a class="email-feedback" href="javascript:{}" onclick="">Send Feedback</a></li>
+									<li><a href="http://crocodoc.uservoice.com"	target="_blank">User Forum</a></li>
+									<li class="no-chatback"><a href="javascript:{}">Chat Offline</a></li>
+									<li class="chatback" style="display: none;"><a href="javascript:{}">Live Chat</a></li>
 								</ul>
 							</li>
 
@@ -185,58 +181,6 @@
 					</div>
 				</div>
 			</div>
-			
-			
-			
-			
-			<style>
-	/* the overlayed element */ 
-	.overlay { background-color:#fff; display:none; padding:15px; text-align:left; border:1px solid #333;  
-	-moz-border-radius:6px; -webkit-border-radius:6px; -moz-box-shadow: 0 0 30px #333; -webkit-box-shadow: 0 0 30px #333; \width:425px; }			
-	
-	 
-	/* close button positioned on upper right corner */ 
-	.overlay .close { background-image:url(/media/images/close.png); position:absolute; right:-15px; top:-15px; cursor:pointer; height:35px; width:35px; }
-	.overlay form { margin: 4px; }
-	.overlay h2 { margin:0 0 20px 0; padding:10px 0 10px 0; border-bottom:1px solid #ddd; font-size:20px; }
-
-	.feedbackOverlayLink { background: #ffe794 url("/media/images/feedback.gif") no-repeat scroll left top; cursor:pointer; display:block; height:96px; 
-		left:0; overflow:hidden; position:fixed; top:50%; margin-top:-52px; width:26px; z-index:1000; border:solid 1px #ccc; border-left:none; _display:none; }	
-	.overlay #FeedbackBox {font-size:12pt; width:400px; height:200px; }
-	.overlay #EmailBox {width:400px; font-size:12pt; }
-	.overlay .thankyou { text-align:center; font-size:18pt; margin-top:30%; }
-	.overlay #FeedbackContainerPanel { width:425px; height:420px; overflow:hidden;}
-	.overlay label { font-weight: normal; font-size: 16px; }
-</style>
-
-			<div class="overlay" id="Overlay"> 
-    <div id="FeedbackContainerPanel">
-		<h2>Need help using Crocodoc?</h2> 
-		 <div id="FeedbackPanel" class="feedback-panel">
-			<form> 
-				<label for="FeedbackBox">Feedback:</label>
-				<div>			
-					<textarea id="FeedbackBox" name="feedbackbox" ></textarea>
-				</div>
-				<label for="EmailBox">Email (optional):</label>
-				<div>			
-					<input type="text" id="EmailBox" name="emailbox" />
-				</div>
-				<div id="FeedbackSubmit" style="float:right;"> 
-					<a href="javascript:{}"><img src="/media/images/button-submit.gif" alt="Submit" /></a>
-				</div> 
-				<div style="clear:both"></div>
-			</form>
-		</div>
-		<div id="ThanksPanel" class="feedback-panel">
-			<div class="thankyou">
-				Thanks! We appreciate it!
-			</div>
-		</div>
-	</div>
-</div>
-			
-			
 		</div>
 	</div>
 </body>

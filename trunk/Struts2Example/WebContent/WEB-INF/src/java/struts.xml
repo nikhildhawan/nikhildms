@@ -12,6 +12,10 @@
 		<action name="login">
 			<result>/jsp/Login.jsp</result>
 		</action>
+		
+		<action name="addcompactheader" class="">
+			<result>/jsp/CompactHeader.jsp</result>
+		</action>
 
 		<action name="sayhello" class="doc.Login">
 		<result name="input">/jsp/Login.jsp</result>

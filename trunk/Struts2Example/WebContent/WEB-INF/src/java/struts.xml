@@ -9,18 +9,20 @@
 			<result name="success">/index.jsp</result>
 		</action>
 
-		<action name="login">
-			<result>/jsp/Login.jsp</result>
-		</action>
+
 		
 		<action name="addcompactheader" class="">
-			<result>/jsp/CompactHeader.jsp</result>
+			<result name="success">/jsp/CompactHeader.jsp</result>
 		</action>
 
 		<action name="sayhello" class="doc.Login">
 		<result name="input">/jsp/Login.jsp</result>
-		<result name="error">/jsp/response.jsp</result>
+		<result name="error">/jsp/Login.jsp</result>
 			<result name="success">/jsp/Homepage.jsp</result>
+		</action>
+		
+		<action name="logout" class="doc.Logout">
+			<result name="success">/jsp/Login.jsp</result>
 		</action>
 
 	</package>

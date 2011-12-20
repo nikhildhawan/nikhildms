@@ -1,34 +1,39 @@
 package doc;
 
 import java.sql.*;
+import java.util.Map;
 
-import util.*;
+import myutil.*;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Login extends ActionSupport
 {
 	private String message, userId, password;
-	ResultSet rs;
+	private ResultSet rs;
 	private Connection conn;
-	String sqlQuery;
-	Statement stmt;
+	private String sqlQuery;
+	private Statement stmt;
+	private Map session;
 
 	@Override
 	public String execute()
 	{
+		session = ActionContext.getContext().getSession();
 		conn = DB.getConnection();
-		sqlQuery = "select * from users where userid='" + getUserId() + "' and password='" + getPassword() + "'";
+		sqlQuery = "select * from users where userid='" + userId + "' and password='" + password + "'";
 		try
 		{
+
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sqlQuery);
 			if (rs.next())
 			{
-				if (rs.getString("Password").compareTo(password) == 0)   //checking case for password.
+				if (rs.getString("Password").compareTo(password) == 0) // checking case for password.
 				{
-					// System.out.println("Actual password:" + password);
-					message = "Welcome to Login Screen" + getUserId();
+					message = "Welcome to Login Screen" + userId;
+					session.put("userkey", userId);
 					return SUCCESS;
 				}
 				else
@@ -93,4 +98,5 @@ public class Login extends ActionSupport
 	{
 		this.message = message;
 	}
+
 }

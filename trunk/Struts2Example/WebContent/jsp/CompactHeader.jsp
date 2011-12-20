@@ -191,11 +191,21 @@
 						</li>
 
 						<li>
-							<a class="user" href="/accounts/profile/"><s:property value="userId" /></a>
+						
+						<% if(session.getAttribute("userkey")!=null)
+						{ %>
+							<a class="user" href="/accounts/profile/"><s:property value="%{#session['userkey']}"/></a>
 							<span class="divider"> | </span>
-							<a href="/accounts/logout/" style="margin-left: 0; padding-left: 0;">Logout</a>
-						</li>
-
+							<a href="logout.action" style="margin-left: 0; padding-left: 0;">Logout</a>
+						
+					<% } 
+						else 
+						{ %>
+							 <a href="/Struts2Example/jsp/Login.jsp">Login</a>
+							 <span class="divider"> | </span>
+							<a href="Register.action" style="margin-left: 0; padding-left: 0;">Register</a>
+					<%	} %>
+					</li>
 					</ul>
 				</div>
 			</div>

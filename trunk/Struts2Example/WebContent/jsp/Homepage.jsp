@@ -11,5 +11,8 @@
 </head>
 <body>
 <s:action name='addcompactheader' executeResult='true' />
+<h1>This is homepage.</h1>
+<h2> user logged in is <s:property value="%{#session['userkey']}"/></h2>
+<%  %>
 </body>
 </html>

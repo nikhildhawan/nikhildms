@@ -15,7 +15,7 @@
 		<div id="main" class="clearfix">
 			<style type="text/css">
 .header {
-	background: url(/media/images/header-gradient.png) #f5f5f5 repeat-x left
+	background: url(/Struts2Example/media/images/header-gradient.png) #f5f5f5 repeat-x left
 		bottom;
 	height: 60px;
 	border-bottom: 1px solid #ccc;
@@ -163,7 +163,7 @@
 	text-decoration: none;
 }
 </style>
-
+<div class="header">
 		<div class="header compact-header">
 			<div class="content clearfix">
 				<div class="logo">
@@ -203,12 +203,13 @@
 						{ %>
 							 <a href="/Struts2Example/jsp/Login.jsp">Login</a>
 							 <span class="divider"> | </span>
-							<a href="/Struts2Example/jsp/Register.jsp" style="margin-left: 0; padding-left: 0;">Register</a>
+							<a href="/Struts2Example/jsp/Register.jsp" style="margin-left: 0; padding-left: 0;">Signup</a>
 					<%	} %>
 					</li>
 					</ul>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </div>

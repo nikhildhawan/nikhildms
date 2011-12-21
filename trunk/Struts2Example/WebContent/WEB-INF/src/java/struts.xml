@@ -4,19 +4,19 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+
+
 	<package name="doc" extends="struts-default">
 		<action name="login" class="doc.Login">
 			<result name="success">/index.jsp</result>
 		</action>
 
-
-		
-		<action name="addcompactheader" class="">
+		<action name="addcompactheader">
 			<result name="success">/jsp/CompactHeader.jsp</result>
 		</action>
 		
-		<action name="register" class="">
-			<result name="success">/jsp/CompactHeader.jsp</result>
+		<action name="register" class="doc.Register">
+			<result name="success">/jsp/Homepage.jsp</result>
 		</action>
 
 		<action name="sayhello" class="doc.Login">

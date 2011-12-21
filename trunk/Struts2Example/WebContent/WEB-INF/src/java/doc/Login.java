@@ -10,7 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class Login extends ActionSupport
 {
-	private String message, userId, password;
+	private String message, username, password;
 	private ResultSet rs;
 	private Connection conn;
 	private String sqlQuery;
@@ -26,7 +26,7 @@ public class Login extends ActionSupport
 		{
 			return ERROR;
 		}
-		sqlQuery = "select * from users where userid='" + userId + "' and password='" + password + "'";
+		sqlQuery = "select * from users where userid='" + username + "' and password='" + password + "'";
 		try
 		{
 
@@ -36,19 +36,19 @@ public class Login extends ActionSupport
 			{
 				if (rs.getString("Password").compareTo(password) == 0) // checking case for password.
 				{
-					message = "Welcome to Login Screen" + userId;
-					session.put("userkey", userId);
+					message = "Welcome to Login Screen" + username;
+					session.put("userkey", username);
 					return SUCCESS;
 				}
 				else
 				{
-					message = "Incorrect password for user " + userId + "Act pass is:" + password;
+					message = "Incorrect password for user " + username + "Act pass is:" + password;
 					return ERROR;
 				}
 			}
 			else
 			{
-				message = "Login Failed for user " + userId;
+				message = "Login Failed for user " + username;
 				return ERROR;
 			}
 		}
@@ -73,14 +73,14 @@ public class Login extends ActionSupport
 
 	}
 
-	public String getUserId()
+	public String getusername()
 	{
-		return userId;
+		return username;
 	}
 
-	public void setUserId(String userId)
+	public void setusername(String username)
 	{
-		this.userId = userId;
+		this.username = username;
 	}
 
 	public String getPassword()

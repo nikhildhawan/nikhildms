@@ -23,7 +23,7 @@
 		<h1 style="margin:0 0 15px; font-size:24px; padding-bottom:10px; border-bottom:2px solid #44a62a;">Login</h1>
 		<table>
 			<tbody>
-				<tr><td><s:textfield name="userId" value="" id="userId" label="Username"/></td></tr>		
+				<tr><td><s:textfield name="username" value="" id="username" label="Username"/></td></tr>		
 				<tr><td><s:password name="password" value="" id="password" label="Password"/></td></tr>		
 			</tbody>
 		</table>
@@ -33,7 +33,7 @@
 			<input type="hidden" name="next" value="/accounts/profile/" />
 			<div style="float:right; padding-top:5px; text-align:right;">
                 <a id="Forget" href="/accounts/password/reset/">Forgot password?</a><br/>
-                <a id="Forget" href="/signup">Create an account now!</a>
+                <a id="Forget" href="/jsp/Register.jsp">Create an account now!</a>
             </div>
 		</div>
 	</s:form>

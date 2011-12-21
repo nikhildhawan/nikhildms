@@ -203,7 +203,7 @@
 						{ %>
 							 <a href="/Struts2Example/jsp/Login.jsp">Login</a>
 							 <span class="divider"> | </span>
-							<a href="Register.action" style="margin-left: 0; padding-left: 0;">Register</a>
+							<a href="/Struts2Example/jsp/Register.jsp" style="margin-left: 0; padding-left: 0;">Register</a>
 					<%	} %>
 					</li>
 					</ul>

@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="/Struts2Example/media/css/screen.css?v=12201316" type="text/css" media="screen, projection">
-<title>Enter your name</title>
+<title>Login-Send me first</title>
 <style type="text/css">
 	h1 { padding:0; border:none; background-color:transparent; color:#227A0A; font-weight:bold; }
 	td { padding-bottom:10px; }	

@@ -22,6 +22,10 @@ public class Login extends ActionSupport
 	{
 		session = ActionContext.getContext().getSession();
 		conn = DB.getConnection();
+		if (conn == null)
+		{
+			return ERROR;
+		}
 		sqlQuery = "select * from users where userid='" + userId + "' and password='" + password + "'";
 		try
 		{

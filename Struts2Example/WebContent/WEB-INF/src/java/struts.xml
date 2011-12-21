@@ -14,6 +14,10 @@
 		<action name="addcompactheader" class="">
 			<result name="success">/jsp/CompactHeader.jsp</result>
 		</action>
+		
+		<action name="register" class="">
+			<result name="success">/jsp/CompactHeader.jsp</result>
+		</action>
 
 		<action name="sayhello" class="doc.Login">
 		<result name="input">/jsp/Login.jsp</result>

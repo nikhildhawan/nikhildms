@@ -16,6 +16,7 @@ public class ValidateUser extends ActionSupport
 	private String option;
 	private InputStream inputStream;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public String execute()
 	{

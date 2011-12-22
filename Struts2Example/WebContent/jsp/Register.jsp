@@ -40,17 +40,18 @@ function stateChanged()
     			alert('Username already Exists','Error');
     			document.getElementById("submit").disabled=true;
     		}
-    	else
+    	else if(showdata=='Doesnt Exist')
     		{
     			alert('Username is available','Congrats');
+    			document.getElementById("submit").disabled=false;
+    		}
+    	else
+    		{
+    			alert(showdata);
     		}
     	
 	}	 
 }
-
-
-
-
 
 function GetXmlHttpObject()
 {

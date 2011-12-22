@@ -15,10 +15,14 @@
 			<result name="success">/jsp/CompactHeader.jsp</result>
 		</action>
 		
+		<action name="uploadfile" class="doc.UploadFile">
+			<result name="success">/jsp/CompactHeader.jsp</result>
+		</action>
+		
 		<action name="validateuser" class="doc.ValidateUser">
 			<result name="ajaxCall" type="stream">
 				<param name="contentType">text/html</param>
-            	<param name="inputName">inputStream</param>
+            	<param name="inputName">inputStreamPlus</param>
         	</result>
 		</action>
 		

@@ -15,6 +15,13 @@
 			<result name="success">/jsp/CompactHeader.jsp</result>
 		</action>
 		
+		<action name="validateuser" class="doc.ValidateUser">
+			<result name="ajaxCall" type="stream">
+				<param name="contentType">text/html</param>
+            	<param name="inputName">inputStream</param>
+        	</result>
+		</action>
+		
 		<action name="register" class="doc.Register">
 			<result name="success">/jsp/Homepage.jsp</result>
 		</action>

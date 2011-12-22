@@ -18,6 +18,64 @@
 	form h4 { padding-bottom:4px; border-bottom:1px solid #CCCCCC; margin-right:25px; }
 
 </style>
+<script type="text/javascript">
+function validateUser() 
+{
+	var username=document.getElementById("Username").value;
+	xmlHttp=GetXmlHttpObject();
+	var url="validateuser.action";
+	url=url+"?option=validateuser&username="+username;
+	xmlHttp.onreadystatechange=stateChanged;
+	xmlHttp.open("GET",url,true);
+	xmlHttp.send(null);
+}
+
+function stateChanged() 
+{ 
+	if(xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+	{ 
+    	var showdata = xmlHttp.responseText; 
+    	if(showdata=='Exists')
+    		{
+    			alert('Username already Exists','Error');
+    			document.getElementById("submit").disabled=true;
+    		}
+    	else
+    		{
+    			alert('Username is available','Congrats');
+    		}
+    	
+	}	 
+}
+
+
+
+
+
+function GetXmlHttpObject()
+{
+	var xmlHttp=null;
+	try 
+	{
+	  xmlHttp=new XMLHttpRequest();
+	}
+	catch (e) 
+	{
+		try
+		{
+	  		xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+	  	}
+	 	catch (e)
+	 	{
+	  		xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  	}
+	 }
+	return xmlHttp;
+}
+</script>
+
+
+
 </head>
 <body>
 <s:action name='addcompactheader' executeResult='true' />
@@ -42,29 +100,22 @@ h1 { font-size:28px; font-weight:normal; color:#479332; line-height:32px; margin
 			-->
 			<table>
 				<tbody>
-					<tr><td><s:textfield class="username" name="username" value="" id="Username" label="Username:" /></td></tr>
+					<tr><td><s:textfield class="username" name="username" value="" id="Username" label="Username:" onblur="validateUser()"  /></td></tr>
 					<tr><td><s:textfield name="email" value="" id="Email" label="Email:" /></td></tr>
 					<tr><td><s:password name="password" class="password" value="" id="Password" label="Password:" /></td></tr>
 					<tr><td><s:password class="password2" name="password2" value="" id="Password2" label="Confirm password:" /></td></tr>
-					<tr><td><s:submit type="image" src="/Struts2Example/media/images/create-account.png" /> </td></tr>
+					<tr><td><s:submit id="submit" type="image" src="/Struts2Example/media/images/create-account.png" /> </td></tr>
 				</tbody>
 			</table>
-			</s:form>
+		</s:form>
 			
-			<div style="margin-top:10px;">
+		<div style="margin-top:10px;">
 			<div id="Spinner" style="display:none;">
 				<img src="/media/images/spinner3.gif" /> 
 				<span style="font-size:18px; color:#666666; padding-left:3px;display:none;">Creating account</span>
 			</div>
-
-			
 		</div>
-			
-		</div>
-		
-		
-		
-	
+	</div>
 </div>
 </body>
 </html>

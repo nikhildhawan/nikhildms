@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="/Struts2Example/media/css/screen.css" type="text/css" media="screen, projection" />
 <title>SignUp - Send Me First</title>
 <style type="text/css">
-
 	body td { padding:6px; }
 	.error { margin-bottom: 0px; }
 	input.error { border-color: #D70B0B; border-style: solid; }

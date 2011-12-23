@@ -32,9 +32,9 @@ public class UploadFile extends ActionSupport
 
 		try
 		{
-			pstmt = conn.prepareStatement("insert into files values(?,?)");
-			pstmt.setInt(1, 1);
-			pstmt.setBlob(2, new FileInputStream(uploadfile), uploadfile.length());
+			pstmt = conn.prepareStatement("insert into files(file) values(?)");
+			// pstmt.setInt(1, 2); changed column to autoincrement;
+			pstmt.setBlob(1, new FileInputStream(uploadfile), uploadfile.length());
 			pstmt.executeUpdate();
 			return SUCCESS;
 		}

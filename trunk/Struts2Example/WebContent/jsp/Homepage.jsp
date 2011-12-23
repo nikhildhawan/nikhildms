@@ -11,6 +11,9 @@
 </head>
 <body>
 <s:action name='addcompactheader' executeResult='true' />
+<div class="span-24 last" style="padding-bottom:20px;">
+	<!--todo-->
+</div>
 <h1>This is homepage.</h1>
 <h2> user logged in is <s:property value="%{#session['userkey']}"/></h2>
 <%  %>

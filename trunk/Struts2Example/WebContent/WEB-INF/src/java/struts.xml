@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-
+<constant name="struts.multipart.maxSize" value="52428800" />
 
 	<package name="doc" extends="struts-default">
 		<action name="login" class="doc.Login">
@@ -16,13 +16,23 @@
 		</action>
 		
 		<action name="uploadfile" class="doc.UploadFile">
-			<result name="success">/jsp/CompactHeader.jsp</result>
+			<result name="success">/jsp/Homepage.jsp</result>
+			<result name="Error">/jsp/Uploadfile.jsp</result>
+		</action>
+		
+		
+		<action name="downloadfile" class="doc.DownloadFile">
+			<result name="success" type="stream">
+			<param name="contentDisposition">attachment;filename=abc.jpg</param>
+				<param name="contentType">application/octet-stream</param>
+            	<param name="inputName">inputStream</param>
+        	</result>
 		</action>
 		
 		<action name="validateuser" class="doc.ValidateUser">
 			<result name="ajaxCall" type="stream">
 				<param name="contentType">text/html</param>
-            	<param name="inputName">inputStreamPlus</param>
+            	<param name="inputName">inputStream</param>
         	</result>
 		</action>
 		
@@ -31,8 +41,7 @@
 		</action>
 
 		<action name="sayhello" class="doc.Login">
-		<result name="input">/jsp/Login.jsp</result>
-		<result name="error">/jsp/Login.jsp</result>
+
 			<result name="success">/jsp/Homepage.jsp</result>
 		</action>
 		

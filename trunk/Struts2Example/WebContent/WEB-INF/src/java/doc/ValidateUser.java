@@ -3,13 +3,11 @@ package doc;
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import java.sql.*;
-import java.util.*;
-
 import myutil.DB;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+@SuppressWarnings("deprecation")
 public class ValidateUser extends ActionSupport
 {
 	private String username;

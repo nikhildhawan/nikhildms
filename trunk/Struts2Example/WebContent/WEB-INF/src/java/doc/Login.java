@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class Login extends ActionSupport
 {
 	private String message, username, password;
+
 	private ResultSet rs;
 	private Connection conn;
 	private String sqlQuery;
@@ -24,6 +25,7 @@ public class Login extends ActionSupport
 		conn = DB.getConnection();
 		if (conn == null)
 		{
+			System.out.println("Connection is null");
 			return ERROR;
 		}
 		sqlQuery = "select * from users where userid='" + username + "' and password='" + password + "'";
@@ -32,6 +34,7 @@ public class Login extends ActionSupport
 
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sqlQuery);
+			System.out.println(sqlQuery);
 			if (rs.next())
 			{
 				if (rs.getString("Password").compareTo(password) == 0) // checking case for password.
@@ -73,12 +76,12 @@ public class Login extends ActionSupport
 
 	}
 
-	public String getusername()
+	public String getUsername()
 	{
 		return username;
 	}
 
-	public void setusername(String username)
+	public void setUsername(String username)
 	{
 		this.username = username;
 	}

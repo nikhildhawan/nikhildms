@@ -16,6 +16,21 @@
 </div>
 <h1>This is homepage.</h1>
 <h2> user logged in is <s:property value="%{#session['userkey']}"/></h2>
-<%  %>
+<%@ page import="java.util.ArrayList, model.*"  %>
+
+<table>
+<tr> 
+</tr>
+
+<s:iterator value="directories" >
+<tr>
+<td> <s:checkbox name="checkbox" /></td>
+<td> <s:property value="foldername" /></td>
+</tr>
+</s:iterator>
+
+</table>
+
+
 </body>
 </html>

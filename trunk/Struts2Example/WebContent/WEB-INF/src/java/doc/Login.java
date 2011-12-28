@@ -21,6 +21,7 @@ public class Login extends ActionSupport
 	@Override
 	public String execute()
 	{
+		int id;
 		session = ActionContext.getContext().getSession();
 		conn = DB.getConnection();
 		if (conn == null)
@@ -31,7 +32,6 @@ public class Login extends ActionSupport
 		sqlQuery = "select * from users where userid='" + username + "' and password='" + password + "'";
 		try
 		{
-
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sqlQuery);
 			System.out.println(sqlQuery);
@@ -40,6 +40,8 @@ public class Login extends ActionSupport
 				if (rs.getString("Password").compareTo(password) == 0) // checking case for password.
 				{
 					message = "Welcome to Login Screen" + username;
+					id = rs.getInt("id");
+					session.put("id", id);
 					session.put("userkey", username);
 					return SUCCESS;
 				}

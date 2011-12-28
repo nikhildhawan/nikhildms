@@ -32,7 +32,7 @@ public class Register extends ActionSupport
 		{
 			return ERROR;
 		}
-		System.out.println(username + password + email + "000000000000000000000000000000000000000");
+		System.out.println("being inserted: " + username + " " + password + " " + email + " 000000000000000000000000000000000000000");
 		sqlQuery = "insert into users (userid,password,emailid) values ('" + username + "','" + password + "','" + email + "')";
 		try
 		{

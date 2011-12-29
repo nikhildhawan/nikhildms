@@ -17,8 +17,8 @@ public class Register extends ActionSupport
 
 	private ResultSet rs;
 	private Connection conn;
-	private String sqlQuery;
-	int rows;
+	private String sqlQuery1, sqlQuery2;
+	int rows, newGeneratedUId;
 	private Statement stmt;
 	private Map session;
 
@@ -33,22 +33,22 @@ public class Register extends ActionSupport
 			return ERROR;
 		}
 		System.out.println("being inserted: " + username + " " + password + " " + email + " 000000000000000000000000000000000000000");
-		sqlQuery = "insert into users (userid,password,emailid) values ('" + username + "','" + password + "','" + email + "')";
+		sqlQuery1 = "insert into users (username,password,emailid) values ('" + username + "','" + password + "','" + email + "')";
+
 		try
 		{
 			stmt = conn.createStatement();
-			rows = stmt.executeUpdate(sqlQuery);
-			if (rows == 1)
+			rows = stmt.executeUpdate(sqlQuery1, Statement.RETURN_GENERATED_KEYS);
+			rs = stmt.getGeneratedKeys();
+			if (rs.next())
 			{
-				session.put("userkey", username);
-				return SUCCESS;
-
+				newGeneratedUId = rs.getInt(1);
 			}
-			else
-			{
-				System.out.println("Rows effected not 1 for sqlQuery" + sqlQuery);
-				return SUCCESS;
-			}
+			sqlQuery2 = "insert into user_folders(foldername,userid) values('root', " + newGeneratedUId + " ) ";
+			rows = stmt.executeUpdate(sqlQuery2);
+			session.put("userkey", username);
+			session.put("uid", newGeneratedUId);
+			return SUCCESS;
 		}
 		catch (Exception ex)
 		{

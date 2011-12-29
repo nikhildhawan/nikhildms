@@ -36,7 +36,7 @@ public class ValidateUser extends ActionSupport
 		Connection conn;
 		Statement stmt;
 		ResultSet rs;
-		String sqlQuery = "select * from users where userid='" + name + "'";
+		String sqlQuery = "select * from users where username='" + name + "'";
 		conn = DB.getConnection();
 		try
 		{

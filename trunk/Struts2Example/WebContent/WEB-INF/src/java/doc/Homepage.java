@@ -3,6 +3,7 @@ package doc;
 import java.util.*;
 
 import model.Directory;
+import model.File;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -12,7 +13,7 @@ public class Homepage extends ActionSupport
 	private ArrayList directories, files;
 	private Map session;
 	private String username;
-	private int id;
+	private int uid, fid;
 
 	@Override
 	public String execute()
@@ -24,8 +25,10 @@ public class Homepage extends ActionSupport
 			if (username != null)
 			{
 				System.out.println("Username is not null and is " + username);
-				id = (int) session.get("id");
-				directories = Directory.getUserRootDirs(username);
+				uid = (int) session.get("uid");
+				fid = Directory.getUserRootDir(uid);
+				directories = Directory.getDirListByFolderId(fid, uid);
+				files = File.getFileListByFolderId(fid, uid);
 				return SUCCESS;
 			}
 			else

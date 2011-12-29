@@ -29,7 +29,7 @@ public class Login extends ActionSupport
 			System.out.println("Connection is null");
 			return ERROR;
 		}
-		sqlQuery = "select * from users where userid='" + username + "' and password='" + password + "'";
+		sqlQuery = "select * from users where username='" + username + "' and password='" + password + "'";
 		try
 		{
 			stmt = conn.createStatement();

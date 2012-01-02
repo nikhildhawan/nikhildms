@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="WebContent/WEB-INF/src/java"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7">
+	<classpathentry kind="src" path="WebContent/WEB-INF/src/java" />
+	<classpathentry kind="con"
+		path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7">
 		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
+			<attribute name="owner.project.facets" value="java" />
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
+	<classpathentry kind="con"
+		path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
 		<attributes>
-			<attribute name="owner.project.facets" value="jst.web"/>
+			<attribute name="owner.project.facets" value="jst.web" />
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/commons-fileupload-1.2.2.jar"/>
-	<classpathentry kind="lib" path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/freemarker-2.3.16.jar"/>
-	<classpathentry kind="lib" path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/ognl-3.0.1.jar"/>
-	<classpathentry kind="lib" path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/struts2-core-2.2.3.1.jar"/>
-	<classpathentry kind="lib" path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/xwork-core-2.2.3.1.jar"/>
-	<classpathentry kind="lib" path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/commons-io-2.0.1.jar"/>
-	<classpathentry kind="lib" path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/javassist-3.11.0.GA.jar"/>
-	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
+	<classpathentry kind="con"
+		path="org.eclipse.jst.j2ee.internal.module.container" />
+	<classpathentry kind="lib"
+		path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/commons-fileupload-1.2.2.jar" />
+	<classpathentry kind="lib"
+		path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/commons-logging-1.1.1.jar" />
+	<classpathentry kind="lib"
+		path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/freemarker-2.3.16.jar" />
+	<classpathentry kind="lib"
+		path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/ognl-3.0.1.jar" />
+	<classpathentry kind="lib"
+		path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/struts2-core-2.2.3.1.jar" />
+	<classpathentry kind="lib"
+		path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/xwork-core-2.2.3.1.jar" />
+	<classpathentry kind="lib"
+		path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/commons-io-2.0.1.jar" />
+	<classpathentry kind="lib"
+		path="D:/IIITB/J2EE Soft/struts-2.2.3.1/lib/javassist-3.11.0.GA.jar" />
+	<classpathentry kind="output" path="WebContent/WEB-INF/classes" />
 </classpath>

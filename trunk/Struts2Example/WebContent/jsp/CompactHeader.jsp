@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -15,8 +15,8 @@
 		<div id="main" class="clearfix">
 			<style type="text/css">
 .header {
-	background: url(/Struts2Example/media/images/header-gradient.png) #f5f5f5 repeat-x left
-		bottom;
+	background: url(/Struts2Example/media/images/header-gradient.png)
+		#f5f5f5 repeat-x left bottom;
 	height: 60px;
 	border-bottom: 1px solid #ccc;
 }
@@ -134,10 +134,22 @@
 	cursor: default;
 }
 
-.navbar .subnav .chatback a {padding-left: 25px;background-position: 5px 4px;background-repeat: no-repeat;background-image: url("/media/images/bullet-green.png");}
+.navbar .subnav .chatback a {
+	padding-left: 25px;
+	background-position: 5px 4px;
+	background-repeat: no-repeat;
+	background-image: url("/media/images/bullet-green.png");
+}
 
 /*Compact Header Styles*/
-.compact-header {background:url(/Struts2Example/media/images/compact-header-gradient.png) #f5f5f5 repeat-x;height: 36px;border-bottom: 1px solid #d1d1d1;position: relative;}
+.compact-header {
+	background:
+		url(/Struts2Example/media/images/compact-header-gradient.png) #f5f5f5
+		repeat-x;
+	height: 36px;
+	border-bottom: 1px solid #d1d1d1;
+	position: relative;
+}
 
 .compact-header a {
 	text-decoration: none;
@@ -163,55 +175,56 @@
 	text-decoration: none;
 }
 </style>
-<div class="header">
-		<div class="header compact-header">
-			<div class="content clearfix">
-				<div class="logo">
-					<a href="/Struts2Example/jsp/Homepage.jsp"><img id="logo"
-						border="0" src="/Struts2Example/media/images/logo-small.png"
-						alt="sendmefirst" width="200" height="42" /> </a>
-				</div>
-				<div class="navbar">
-					<ul>
+			<div class="header">
+				<div class="header compact-header">
+					<div class="content clearfix">
+						<div class="logo">
+							<a href="/Struts2Example/jsp/Homepage.jsp"><img id="logo"
+								border="0" src="/Struts2Example/media/images/logo-small.png"
+								alt="sendmefirst" width="200" height="42" /> </a>
+						</div>
+						<div class="navbar">
+							<ul>
 
-						<li><a class="mydocs-tab" href="/accounts/profile/">My Documents</a></li>
+								<li><a class="mydocs-tab" href="/accounts/profile/">My
+										Documents</a></li>
 
-						<!-- 							<li><a href="/partner-program/">Partner Program</a></li> -->
-						<!-- 							<li><a href="/api/">API</a></li> -->
+								<!-- 							<li><a href="/partner-program/">Partner Program</a></li> -->
+								<!-- 							<li><a href="/api/">API</a></li> -->
 
-						<li class="feedback">
-							<!--Feedback dropdown for normal header-->
-							<a class="has-subnav" href="javascript:{}">Support</a>
-							<ul class="subnav">
-								<li><a class="email-feedback" href="javascript:{}" onclick="">Send Feedback</a></li>
-								<li><a href="http://crocodoc.uservoice.com"	target="_blank">User Forum</a></li>
-								<li class="no-chatback"><a href="javascript:{}">Chat Offline</a></li>
-								<li class="chatback" style="display: none;"><a href="javascript:{}">Live Chat</a></li>
-							</ul>
-						</li>
+								<li class="feedback">
+									<!--Feedback dropdown for normal header--> <a
+									class="has-subnav" href="javascript:{}">Support</a>
+									<ul class="subnav">
+										<li><a class="email-feedback" href="javascript:{}"
+											onclick="">Send Feedback</a></li>
+										<li><a href="http://crocodoc.uservoice.com"
+											target="_blank">User Forum</a></li>
+										<li class="no-chatback"><a href="javascript:{}">Chat
+												Offline</a></li>
+										<li class="chatback" style="display: none;"><a
+											href="javascript:{}">Live Chat</a></li>
+									</ul>
+								</li>
 
-						<li>
-						
-						<% if(session.getAttribute("userkey")!=null)
-						{ %>
-							<a class="user" href="/accounts/profile/"><s:property value="%{#session['userkey']}"/></a>
-							<span class="divider"> | </span>
-							<a href="logout.action" style="margin-left: 0; padding-left: 0;">Logout</a>
-						
-					<% } 
+								<li>
+									<% if(session.getAttribute("userkey")!=null)
+						{ %> <a class="user" href="/accounts/profile/"><s:property
+											value="%{#session['userkey']}" /></a> <span class="divider">
+										| </span> <a href="logout.action"
+									style="margin-left: 0; padding-left: 0;">Logout</a> <% } 
 						else 
-						{ %>
-							 <a href="/Struts2Example/jsp/Login.jsp">Login</a>
-							 <span class="divider"> | </span>
-							<a href="/Struts2Example/jsp/Register.jsp" style="margin-left: 0; padding-left: 0;">Signup</a>
-					<%	} %>
-					</li>
-					</ul>
+						{ %> <a href="/Struts2Example/jsp/Login.jsp">Login</a> <span
+									class="divider"> | </span> <a
+									href="/Struts2Example/jsp/Register.jsp"
+									style="margin-left: 0; padding-left: 0;">Signup</a> <%	} %>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		</div>
 	</div>
-</div>
 </body>
 </html>

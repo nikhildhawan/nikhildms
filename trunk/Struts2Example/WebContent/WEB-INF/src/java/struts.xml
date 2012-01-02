@@ -4,17 +4,17 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-<constant name="struts.multipart.maxSize" value="52428800" />
+	<constant name="struts.multipart.maxSize" value="52428800" />
 
 	<package name="doc" extends="struts-default">
-	
-	
+
+
 		<global-results>
-    		<result name="login">/jsp/Login.jsp</result>
-<!--     		<result name="invalid.token">/Error.jsp</result> -->
-<!--     		<result name="login" type="redirectAction">Logon!input</result> -->
+			<result name="login">/jsp/Login.jsp</result>
+			<!-- <result name="invalid.token">/Error.jsp</result> -->
+			<!-- <result name="login" type="redirectAction">Logon!input</result> -->
 		</global-results>
-		
+
 		<action name="login" class="doc.Login">
 			<result name="success">/index.jsp</result>
 		</action>
@@ -22,28 +22,28 @@
 		<action name="addcompactheader">
 			<result name="success">/jsp/CompactHeader.jsp</result>
 		</action>
-		
+
 		<action name="uploadfile" class="doc.UploadFile">
 			<result name="success" type="redirectAction">homepage</result>
 			<result name="Error">/jsp/Uploadfile.jsp</result>
 		</action>
-		
-		
+
+
 		<action name="downloadfile" class="doc.DownloadFile">
 			<result name="success" type="stream">
-			<param name="contentDisposition">attachment;filename=abc.jpg</param>
+				<param name="contentDisposition">attachment;filename=abc.jpg</param>
 				<param name="contentType">application/octet-stream</param>
-            	<param name="inputName">inputStream</param>
-        	</result>
+				<param name="inputName">inputStream</param>
+			</result>
 		</action>
-		
+
 		<action name="validateuser" class="doc.ValidateUser">
 			<result name="ajaxCall" type="stream">
 				<param name="contentType">text/html</param>
-            	<param name="inputName">inputStream</param>
-        	</result>
+				<param name="inputName">inputStream</param>
+			</result>
 		</action>
-		
+
 		<action name="register" class="doc.Register">
 			<result name="success" type="redirectAction">homepage</result>
 		</action>
@@ -52,11 +52,11 @@
 			<result name="error">/jsp/Login.jsp</result>
 			<result name="success" type="redirectAction">homepage</result>
 		</action>
-		
+
 		<action name="logout" class="doc.Logout">
 			<result name="success">/jsp/Login.jsp</result>
 		</action>
-		
+
 		<action name="homepage" class="doc.Homepage">
 			<result name="success">/jsp/Homepage.jsp</result>
 		</action>

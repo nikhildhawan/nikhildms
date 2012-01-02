@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>SendMeFirst.com</title>
-<link rel="stylesheet" href="/Struts2Example/media/css/screen.css" type="text/css" media="screen, projection" /> 
+<!-- <link rel="stylesheet" href="/Struts2Example/media/css/screen.css" type="text/css" media="screen, projection" />  -->
 <script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
 </head>
 <body>

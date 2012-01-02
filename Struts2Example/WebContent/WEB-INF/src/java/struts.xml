@@ -24,7 +24,7 @@
 		</action>
 		
 		<action name="uploadfile" class="doc.UploadFile">
-			<result name="success">/jsp/Homepage.jsp</result>
+			<result name="success" type="redirectAction">homepage</result>
 			<result name="Error">/jsp/Uploadfile.jsp</result>
 		</action>
 		

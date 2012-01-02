@@ -25,7 +25,7 @@ public class DownloadFile extends ActionSupport
 		{
 			return ERROR;
 		}
-		sqlQuery = "select * from files where fileid=1";
+		sqlQuery = "select * from filedata where fileid=1";
 		try
 		{
 			stmt = conn.createStatement();

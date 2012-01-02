@@ -3,6 +3,7 @@ package doc;
 import java.sql.*;
 import java.util.Map;
 
+import model.Directory;
 import myutil.*;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -21,7 +22,7 @@ public class Login extends ActionSupport
 	@Override
 	public String execute()
 	{
-		int id;
+		int uid, userRootDir;
 		session = ActionContext.getContext().getSession();
 		conn = DB.getConnection();
 		if (conn == null)
@@ -40,9 +41,12 @@ public class Login extends ActionSupport
 				if (rs.getString("Password").compareTo(password) == 0) // checking case for password.
 				{
 					message = "Welcome to Login Screen" + username;
-					id = rs.getInt("id");
-					session.put("id", id);
+					uid = rs.getInt("id");
+					session.put("uid", uid);
 					session.put("userkey", username);
+					userRootDir = Directory.getUserRootDir(uid);
+					session.put("userrootdirid", userRootDir);
+					session.put("usercurrentdirid", userRootDir);
 					return SUCCESS;
 				}
 				else

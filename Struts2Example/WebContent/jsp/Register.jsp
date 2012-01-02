@@ -21,6 +21,11 @@
 function validateUser() 
 {
 	var username=document.getElementById("Username").value;
+	if(username=="")
+		{
+			alert("Username Empty");
+			return false ;
+		}
 	xmlHttp=GetXmlHttpObject();
 	var url="validateuser.action";
 	url=url+"?option=validateuser&username="+username;
@@ -37,12 +42,12 @@ function stateChanged()
     	if(showdata=='Exists')
     		{
     			alert('Username already Exists','Error');
-    			document.getElementById("submit").disabled=true;
+    			return false ;
     		}
     	else if(showdata=='Doesnt Exist')
     		{
     			alert('Username is available','Congrats');
-    			document.getElementById("submit").disabled=false;
+    			return true ;
     		}
     	else
     		{
@@ -94,7 +99,7 @@ h1 { font-size:28px; font-weight:normal; color:#479332; line-height:32px; margin
 	</p>
 	
 		<div id="AccountPanel">
-		<s:form class="form" id="AccountForm" style="margin:0 0 30px 0;" action="register" method="POST">
+		<s:form class="form" id="AccountForm" style="margin:0 0 30px 0;" action="register" method="POST" onsubmit="validateUser()">
 			<!--
 			<h4>Pick a user name</h4>
 			-->
@@ -104,7 +109,7 @@ h1 { font-size:28px; font-weight:normal; color:#479332; line-height:32px; margin
 					<tr><td><s:textfield name="email" value="" id="Email" label="Email:" /></td></tr>
 					<tr><td><s:password name="password" class="password" value="" id="Password" label="Password:" /></td></tr>
 					<tr><td><s:password class="password2" name="password2" value="" id="Password2" label="Confirm password:" /></td></tr>
-					<tr><td><s:submit id="submit" type="image" src="/Struts2Example/media/images/create-account.png" /> </td></tr>
+					<tr><td><s:submit id="submit"  type="image" src="/Struts2Example/media/images/create-account.png" onclick="validateUser()"/> </td></tr>
 				</tbody>
 			</table>
 		</s:form>

@@ -3,7 +3,7 @@ package doc;
 import java.util.*;
 
 import model.Directory;
-import model.File;
+import model.UserFile;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,7 +28,8 @@ public class Homepage extends ActionSupport
 				uid = (int) session.get("uid");
 				fid = Directory.getUserRootDir(uid);
 				directories = Directory.getDirListByFolderId(fid, uid);
-				files = File.getFileListByFolderId(fid, uid);
+				files = UserFile.getFileListByFolderId(fid, uid);
+				System.out.println(files.size() + " is size of files ");
 				return SUCCESS;
 			}
 			else

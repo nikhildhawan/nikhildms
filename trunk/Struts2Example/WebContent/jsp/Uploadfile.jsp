@@ -25,7 +25,7 @@ h1 { font-size:28px; font-weight:normal; color:#479332; line-height:32px; margin
 			<tbody>
 			<s:actionerror/>
 			<s:fielderror />
-				<tr><td><s:file name="uploadfile"  id="uploadfile" label="File"/></td></tr>	
+				<tr><td><s:file name="upload"  id="upload" label="File"/></td></tr>	
 			</tbody>
 		</table>
 		

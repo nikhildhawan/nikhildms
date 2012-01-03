@@ -2,9 +2,12 @@ package doc;
 
 import java.io.InputStream;
 import java.sql.*;
+import java.util.Map;
 
+import model.UserFile;
 import myutil.DB;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class DownloadFile extends ActionSupport
@@ -14,49 +17,44 @@ public class DownloadFile extends ActionSupport
 	private String sqlQuery;
 	private Statement stmt;
 	private String fileid;
+	private int intfileid;
 	private Blob fileblob;
+	private int uid;
+
 	private InputStream inputStream;
+	private String contentDisposition, contentType;
+	private Map session;
 
 	@Override
 	public String execute()
 	{
-		conn = DB.getConnection();
-		if (conn == null)
+		if (fileid != null)
 		{
-			return ERROR;
-		}
-		sqlQuery = "select * from filedata where fileid=1";
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sqlQuery);
-			if (rs.next())
-			{
-				fileblob = rs.getBlob("file");
-				inputStream = fileblob.getBinaryStream();
-				return SUCCESS;
-			}
-			else
-			{
-				return ERROR;
-			}
-		}
-		catch (Exception ex)
-		{
-			ex.printStackTrace();
-			return ERROR;
-		}
-		finally
-		{
+
+			System.out.println("File id got from jsp before downloading is:" + fileid);
+			intfileid = Integer.parseInt(fileid);
+			session = ActionContext.getContext().getSession();
+			uid = (int) session.get("uid");
+			System.out.println(uid + " uid recieved from jsp before downloading it.");
+			fileblob = UserFile.getFileAsBlob(intfileid);
+			UserFile ufile = UserFile.getFileMetadata(intfileid, uid);
+			contentDisposition = "attachment;filename=" + ufile.getFilename();
+			contentType = ufile.getFiletype();
 			try
 			{
-				conn.close();
+				inputStream = fileblob.getBinaryStream();
+
 			}
 			catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			return SUCCESS;
+		}
+		else
+		{
+			return ERROR;
 		}
 	}
 
@@ -75,4 +73,13 @@ public class DownloadFile extends ActionSupport
 		return inputStream;
 	}
 
+	public String getContentDisposition()
+	{
+		return contentDisposition;
+	}
+
+	public String getContentType()
+	{
+		return contentType;
+	}
 }

@@ -38,9 +38,7 @@ h1 {
 	<div class="upload-box">
 		<s:form action='uploadfile' method='post' style="margin-top:25px;"
 			enctype="multipart/form-data">
-			<h1
-				style="margin: 0 0 15px; font-size: 24px; padding-bottom: 10px; border-bottom: 2px solid #44a62a;">Upload
-				File</h1>
+			<h1	style="margin: 0 0 15px; font-size: 24px; padding-bottom: 10px; border-bottom: 2px solid #44a62a;">Upload	File</h1>
 			<!-- 		<h1>Upload File</h1> -->
 			<table>
 				<tbody>

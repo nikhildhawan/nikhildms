@@ -1,10 +1,8 @@
 package model;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.io.*;
+import java.sql.*;
+import java.util.*;
 
 import myutil.DB;
 
@@ -16,13 +14,13 @@ public class UserFile
 
 	public static ArrayList<UserFile> getFileListByFolderId(int folderid, int uid)
 	{
-
 		ArrayList<UserFile> filelist = new ArrayList<UserFile>();
 		Connection conn;
 		Statement stmt;
 		ResultSet rs;
 		String sqlQuery;
 		conn = DB.getConnection();
+
 		if (conn == null)
 		{
 			return null;
@@ -31,7 +29,7 @@ public class UserFile
 		{
 			try
 			{
-				System.out.println(uid + " has been recieved in model func 2");
+				System.out.println("user id" + uid + " has been recieved in model userfile func getfilelistbyfolderid");
 				stmt = conn.createStatement();
 				sqlQuery = "select * from user_files where parentfolderid=" + folderid + " and userid=" + uid + "";
 				System.out.println(sqlQuery);
@@ -108,8 +106,171 @@ public class UserFile
 			{
 				ex.getStackTrace();
 			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return newGeneratedFileid;
+	}
+
+	public static int saveFile(int fileid, File file)
+	{
+		int result = -1;
+		Connection conn;
+		Statement stmt;
+		PreparedStatement pstmt;
+		ResultSet rs;
+		String sqlQuery;
+		conn = DB.getConnection();
+		if (conn == null)
+		{
+			return result;
+		}
+		else
+		{
+			try
+			{
+				sqlQuery = "insert into filedata values( ?,? ) ";
+				System.out.println(sqlQuery);
+				pstmt = conn.prepareStatement(sqlQuery);
+				pstmt.setInt(1, fileid);
+				pstmt.setBlob(2, new FileInputStream(file), file.length());
+				pstmt.executeUpdate();
+				result = 1;
+			}
+			catch (Exception ex)
+			{
+				System.out.println("Error in inserting filedata");
+				ex.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public static Blob getFileAsBlob(int fileid)
+	{
+		File file = null;
+		Connection conn;
+		Statement stmt;
+		PreparedStatement pstmt;
+		Blob fileblob;
+		ResultSet rs;
+		String sqlQuery;
+		conn = DB.getConnection();
+		if (conn == null)
+		{
+			return null;
+		}
+		else
+		{
+			try
+			{
+				stmt = conn.createStatement();
+				sqlQuery = "select * from filedata where fileid=" + fileid + "";
+				rs = stmt.executeQuery(sqlQuery);
+				if (rs.next())
+				{
+					fileblob = rs.getBlob("file");
+					return fileblob;
+				}
+				else
+				{
+					return null;
+				}
+			}
+			catch (Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return null;
+	}
+
+	public static UserFile getFileMetadata(int fileid, int userid)
+	{
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		String sqlQuery;
+		conn = DB.getConnection();
+		int newGeneratedFileid = -1;
+		if (conn == null)
+		{
+//			return null;
+			System.out.println("Connection is null in userfile..java");
+		}
+		else
+		{
+			System.out.println("Connection succesful");
+			try
+			{
+				sqlQuery = "select * from user_files where fileid= " + fileid + " and userid= " + userid + " ";
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sqlQuery);
+				if (rs.next())
+				{
+					UserFile file = new UserFile();
+					file.fileid = rs.getInt("fileid");
+					file.filename = rs.getString("filename");
+					file.filetype = rs.getString("filetype");
+					file.filesize = rs.getInt("filesize");
+					return file;
+				}
+			}
+			catch (Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return null;
 	}
 
 	public String getFilename()

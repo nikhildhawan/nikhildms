@@ -107,6 +107,9 @@ public class Directory
 		}
 	}
 
+	
+	
+	
 	public int getFolderid()
 	{
 		return folderid;

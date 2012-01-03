@@ -41,43 +41,11 @@ public class UploadFile extends ActionSupport
 		}
 		uid = (int) session.get("uid");
 		curdirid = (int) session.get("usercurrentdirid");
-		System.out.println("uid:" + uid + "curdirid" + curdirid);
-//		getUploadContentType();
-//		getUploadfile();
-//		getUploadFileName();
-//		System.out.println("lenght" + uploadfile.length());
+		System.out.println("uid:" + uid + ",curdirid" + curdirid);
 		fileid = UserFile.saveFileMetadata(uid, uploadFileName, uploadContentType, upload.length(), curdirid);
 		System.out.println("fileid generated and returned is " + fileid);
+		UserFile.saveFile(fileid, upload);
 		return SUCCESS;
-//		conn = DB.getConnection();
-
-//		try
-//		{
-//
-////			pstmt = conn.prepareStatement("insert into filedata(file) values(?)");
-//			// pstmt.setInt(1, 2); changed column to autoincrement;
-////			pstmt.setBlob(1, new FileInputStream(uploadfile), uploadfile.length());
-////			pstmt.executeUpdate();
-//			return SUCCESS;
-//		}
-//		catch (Exception e)
-//		{
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return ERROR;
-//		}
-//		finally
-//		{
-//			try
-//			{
-//				conn.close();
-//			}
-//			catch (SQLException e)
-//			{
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
 	}
 
 	public File getUpload()

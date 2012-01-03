@@ -31,8 +31,8 @@
 
 		<action name="downloadfile" class="doc.DownloadFile">
 			<result name="success" type="stream">
-				<param name="contentDisposition">attachment;filename=abc.jpg</param>
-				<param name="contentType">application/octet-stream</param>
+				<param name="contentDisposition">contentDisposition</param>
+				<param name="contentType">contentType</param>
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>

@@ -107,9 +107,47 @@ public class Directory
 		}
 	}
 
-	
-	
-	
+	public static int createNewFolder(String foldername, int parentfolderid, int userid)
+	{
+		int newGeneratedFolderId = -1;
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		String sqlQuery;
+		conn = DB.getConnection();
+		if (conn == null)
+		{
+			return newGeneratedFolderId;
+		}
+		else
+		{
+			try
+			{
+				stmt = conn.createStatement();
+				sqlQuery = " insert into user_folders (foldername,parentfolderid,userid) values ( '" + foldername + "', " + parentfolderid + " , " + userid + ") ";
+				stmt.executeUpdate(sqlQuery);
+				return 1;
+			}
+			catch (Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return -1;
+	}
+
 	public int getFolderid()
 	{
 		return folderid;

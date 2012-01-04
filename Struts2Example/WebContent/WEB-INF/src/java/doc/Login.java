@@ -30,6 +30,17 @@ public class Login extends ActionSupport
 			System.out.println("Connection is null");
 			return ERROR;
 		}
+		System.out.println("Username is:" + username + ":  and password is:" + password);
+		if (username.isEmpty())
+		{
+			addActionError("Username can not be empty");
+			return ERROR;
+		}
+		if (password.isEmpty())
+		{
+			addActionError("Password can not be empty");
+			return ERROR;
+		}
 		sqlQuery = "select * from users where username='" + username + "' and password='" + password + "'";
 		try
 		{
@@ -40,7 +51,6 @@ public class Login extends ActionSupport
 			{
 				if (rs.getString("Password").compareTo(password) == 0) // checking case for password.
 				{
-					message = "Welcome to Login Screen" + username;
 					uid = rs.getInt("id");
 					session.put("uid", uid);
 					session.put("userkey", username);
@@ -51,19 +61,18 @@ public class Login extends ActionSupport
 				}
 				else
 				{
-					message = "Incorrect password for user " + username + "Act pass is:" + password;
+					addActionError("Invalid Login Details");
 					return ERROR;
 				}
 			}
 			else
 			{
-				message = "Login Failed for user " + username;
+				addActionError("Invalid Login Details");
 				return ERROR;
 			}
 		}
 		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ERROR;
 		}

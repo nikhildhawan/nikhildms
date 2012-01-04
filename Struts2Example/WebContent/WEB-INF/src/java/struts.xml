@@ -24,8 +24,12 @@
 		</action>
 
 		<action name="uploadfile" class="doc.UploadFile">
+			<result name="error">/jsp/Uploadfile.jsp</result>
+			<result name="input">
+				<param name="location">/jsp/Uploadfile.jsp</param>
+				<param name="error">Input file too large</param>	
+			</result>
 			<result name="success" type="redirectAction">homepage</result>
-			<result name="Error">/jsp/Uploadfile.jsp</result>
 		</action>
 
 

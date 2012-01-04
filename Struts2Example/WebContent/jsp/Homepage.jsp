@@ -72,14 +72,18 @@ td.label {	width: 80px; }
 				<div id="UploadButton"></div>
 				<a href="/Struts2Example/jsp/Uploadfile.jsp"><button id="AddDocBtn" class="gray-button"><span>Add Document</span></button></a>
 				<a href="homepage?option=newfolder"><button class="new-folder gray-button"><span>New Folder</span></button></a>
-				<div></div>
 				<table>
 					<tr>
 						<th class="th-header" style="width:500px;">Name</th>
 						<th class="th-header">Download</th>
 					</tr>
-
+					<% if(session.getAttribute("usercurrentdirid") != session.getAttribute("userrootdirid")) { System.out.println("current folder id:"+session.getAttribute("usercurrentdirid")+" and root id"+session.getAttribute("userrootdirid")+" are different"); %>
+					<tr>
+					<td  class="td-data" style="width: 500px; color:peru"><img	src="/Struts2Example/media/images/go-to-parent.gif" />&nbsp&nbsp<a href="homepage?option=parentdirectory&currentfid=<%= session.getAttribute("usercurrentdirid") %> ">Parent Folder </a></td>
+					</tr>
+					<%	} %>
 					<s:iterator value="directories">
+
 						<tr>
 							<td class="td-data" style="width: 500px; color:peru"><img	src="/Struts2Example/media/images/folder.gif" />&nbsp&nbsp<a href="homepage?option=changedirectory&currentfid=<s:property value="folderid" />"><s:property	value="foldername" /></a></td>
 						</tr>

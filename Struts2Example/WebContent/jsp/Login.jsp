@@ -44,9 +44,10 @@ td.label {
 
 	<s:action name='addcompactheader' executeResult='true' />
 	<div class="login-box">
+		<s:actionerror />
+		<s:fielderror />
 		<s:form action='sayhello' method='post' style="margin-top:25px;">
-			<h1
-				style="margin: 0 0 15px; font-size: 24px; padding-bottom: 10px; border-bottom: 2px solid #44a62a;">Login</h1>
+			<h1 style="margin: 0 0 15px; font-size: 24px; padding-bottom: 10px; border-bottom: 2px solid #44a62a;">Login</h1>
 			<table>
 				<tbody>
 					<tr>

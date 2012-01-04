@@ -148,6 +148,50 @@ public class Directory
 		return -1;
 	}
 
+	public static int getParentFolderId(int folderid)
+	{
+		int parentId = -1;
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		String sqlQuery;
+		conn = DB.getConnection();
+		if (conn == null)
+		{
+			return parentId;
+		}
+		else
+		{
+			try
+			{
+				stmt = conn.createStatement();
+				sqlQuery = "select parentfolderid from user_folders where folderid=" + folderid;
+				rs = stmt.executeQuery(sqlQuery);
+				if (rs.next())
+				{
+					parentId = rs.getInt("parentfolderid");
+				}
+			}
+			catch (Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return parentId;
+	}
+
 	public int getFolderid()
 	{
 		return folderid;

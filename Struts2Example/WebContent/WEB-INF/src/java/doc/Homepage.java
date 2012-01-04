@@ -13,11 +13,13 @@ public class Homepage extends ActionSupport
 	private ArrayList directories, files;
 	private Map session;
 	private String username;
-	private int uid, fid;
+	private int uid, fid, currentfid;
+	private String option;
 
 	@Override
 	public String execute()
 	{
+
 		session = ActionContext.getContext().getSession();
 		if (session != null)
 		{
@@ -27,8 +29,24 @@ public class Homepage extends ActionSupport
 				System.out.println("Username is not null and is " + username);
 				uid = (int) session.get("uid");
 				fid = Directory.getUserRootDir(uid);
-				directories = Directory.getDirListByFolderId(fid, uid);
-				files = UserFile.getFileListByFolderId(fid, uid);
+
+				if (option != null && option.compareToIgnoreCase("newfolder") == 0) // Creating new folder
+				{
+					// to do call createnewfolder
+					currentfid = (int) session.get("usercurrentdirid");
+					Directory.createNewFolder("New Folder", currentfid, uid);
+				}
+				if (option != null && option.compareToIgnoreCase("changedirectory") == 0)
+				{
+					// System.out.println(newfid);
+					session.put("usercurrentdirid", currentfid);
+				}
+				else
+				{
+					currentfid = (int) session.get("usercurrentdirid");
+				}
+				directories = Directory.getDirListByFolderId(currentfid, uid);
+				files = UserFile.getFileListByFolderId(currentfid, uid);
 				System.out.println(files.size() + " is size of files ");
 				return SUCCESS;
 			}
@@ -42,6 +60,31 @@ public class Homepage extends ActionSupport
 		{
 			return LOGIN;
 		}
+	}
+
+	public int getCurrentfid()
+	{
+		return currentfid;
+	}
+
+	public void setCurrentfid(int currentfid)
+	{
+		this.currentfid = currentfid;
+	}
+
+	public String getOption()
+	{
+		return option;
+	}
+
+	public void setOption(String option)
+	{
+		this.option = option;
+	}
+
+	public void addFolder()
+	{
+
 	}
 
 	public ArrayList getDirectories()

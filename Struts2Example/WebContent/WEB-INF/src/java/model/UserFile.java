@@ -273,6 +273,61 @@ public class UserFile
 		return null;
 	}
 
+	public static ArrayList<UserFile> getFileListBySearch(String name)
+	{
+
+		ArrayList<UserFile> filesearchlist = new ArrayList<UserFile>();
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		String sqlQuery;
+		conn = DB.getConnection();
+
+		if (conn == null)
+		{
+			return null;
+		}
+		else
+		{
+			try
+			{
+				System.out.println("String:" + filesearchlist + " has been recieved in model userfile func getFileListBySearch");
+				stmt = conn.createStatement();
+				sqlQuery = "select * from user_files where filename like '" + name;
+				System.out.println(sqlQuery);
+				rs = stmt.executeQuery(sqlQuery);
+				while (rs.next())
+				{
+					System.out.println("Resultset files has data ");
+					UserFile file = new UserFile();
+					file.filename = rs.getString("filename");
+					file.filesize = rs.getInt("filesize");
+					file.filetype = rs.getString("filetype");
+					file.fileid = rs.getInt("fileid");
+					filesearchlist.add(file);
+				}
+			}
+			catch (Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return filesearchlist;
+		}
+
+	}
+
 	public String getFilename()
 	{
 		return filename;

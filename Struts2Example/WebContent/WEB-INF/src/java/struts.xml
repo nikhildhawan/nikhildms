@@ -18,6 +18,8 @@
 		<action name="login" class="doc.Login">
 			<result name="success">/index.jsp</result>
 		</action>
+		
+
 
 		<action name="addcompactheader">
 			<result name="success">/jsp/CompactHeader.jsp</result>
@@ -30,6 +32,10 @@
 				<param name="error">Input file too large</param>	
 			</result>
 			<result name="success" type="redirectAction">homepage</result>
+		</action>
+		
+		<action name="sharefile" class="doc.ShareFile">
+			<result name="success" >/jsp/Sharefile.jsp</result>
 		</action>
 
 

@@ -26,7 +26,6 @@ public class UploadFile extends ActionSupport
 	@Override
 	public String execute()
 	{
-		System.out.println(uploadContentType + "   " + uploadFileName);
 		int uid, fid, rootdirid, curdirid, fileid;
 
 		session = ActionContext.getContext().getSession();
@@ -42,8 +41,20 @@ public class UploadFile extends ActionSupport
 		uid = (int) session.get("uid");
 		curdirid = (int) session.get("usercurrentdirid");
 		System.out.println("uid:" + uid + ",curdirid" + curdirid);
+		if (upload == null)
+		{
+			System.out.println("No file was selected");
+			addActionError("Please select a file to upload");
+			return ERROR;
+
+		}
+		if (upload.length() > 50000000)
+		{
+			System.out.println("File selected is greater than 50MB");
+			addActionError("File selected can not be greater than 50 MB");
+			return ERROR;
+		}
 		fileid = UserFile.saveFileMetadata(uid, uploadFileName, uploadContentType, upload.length(), curdirid);
-		System.out.println("fileid generated and returned is " + fileid);
 		UserFile.saveFile(fileid, upload);
 		return SUCCESS;
 	}

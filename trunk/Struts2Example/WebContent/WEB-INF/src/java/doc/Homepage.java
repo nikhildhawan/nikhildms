@@ -41,6 +41,12 @@ public class Homepage extends ActionSupport
 					// System.out.println(newfid);
 					session.put("usercurrentdirid", currentfid);
 				}
+				if (option != null && option.compareToIgnoreCase("parentdirectory") == 0)
+				{
+					// System.out.println(newfid);
+					currentfid = Directory.getParentFolderId(currentfid);
+					session.put("usercurrentdirid", currentfid);
+				}
 				else
 				{
 					currentfid = (int) session.get("usercurrentdirid");

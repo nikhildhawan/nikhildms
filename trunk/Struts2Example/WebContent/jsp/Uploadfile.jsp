@@ -36,14 +36,12 @@ h1 {
 }
 </style>
 	<div class="upload-box">
-		<s:form action='uploadfile' method='post' style="margin-top:25px;"
-			enctype="multipart/form-data">
-			<h1	style="margin: 0 0 15px; font-size: 24px; padding-bottom: 10px; border-bottom: 2px solid #44a62a;">Upload	File</h1>
-			<!-- 		<h1>Upload File</h1> -->
+		<s:actionerror />
+		<s:fielderror />
+		<s:form action='uploadfile' method='post' style="margin-top:25px;" enctype="multipart/form-data">
+			<h1	style="display:inline-block;margin: 0 0 15px; font-size: 24px; padding-bottom: 10px; border-bottom: 2px solid #44a62a;">Upload&nbspFile</h1>
 			<table>
 				<tbody>
-					<s:actionerror />
-					<s:fielderror />
 					<tr>
 						<td><s:file name="upload" id="upload" label="File" /></td>
 					</tr>
@@ -53,11 +51,9 @@ h1 {
 			<div style="margin: 0;">
 				<input type="submit" value="Upload" style="padding: 2px 12px;" />
 
-				<div
-					style="display: none; float: right; padding-top: 5px; text-align: right;">
-					<a id="Forget" href="/accounts/password/reset/">Forgot
-						password?</a><br /> <a id="Forget" href="/jsp/Register.jsp">Create
-						an account now!</a>
+				<div 	style="display: none; float: right; padding-top: 5px; text-align: right;">
+					<a id="Forget" href="/accounts/password/reset/">Forgot	password?</a><br /> 
+					<a id="Forget" href="/jsp/Register.jsp">Create an account now!</a>
 				</div>
 			</div>
 		</s:form>

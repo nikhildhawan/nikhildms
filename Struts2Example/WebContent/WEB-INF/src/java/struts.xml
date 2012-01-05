@@ -23,6 +23,7 @@
 
 		<action name="addcompactheader">
 			<result name="success">/jsp/CompactHeader.jsp</result>
+			<result name="input">/jsp/CompactHeader.jsp</result>
 		</action>
 
 		<action name="uploadfile" class="doc.UploadFile">
@@ -35,7 +36,7 @@
 		</action>
 		
 		<action name="sharefile" class="doc.ShareFile">
-			<result name="success" >/jsp/Sharefile.jsp</result>
+			<result name="success" type="redirectAction" >homepage</result>
 		</action>
 
 
@@ -45,6 +46,7 @@
 				<param name="contentType">contentType</param>
 				<param name="inputName">inputStream</param>
 			</result>
+			<result name="error" type="redirectAction">homepage</result>
 		</action>
 
 		<action name="validateuser" class="doc.ValidateUser">
@@ -56,6 +58,7 @@
 
 		<action name="register" class="doc.Register">
 			<result name="success" type="redirectAction">homepage</result>
+			<result name="error">/jsp/Register.jsp</result>
 		</action>
 
 		<action name="sayhello" class="doc.Login">
@@ -65,6 +68,10 @@
 
 		<action name="logout" class="doc.Logout">
 			<result name="success">/jsp/Login.jsp</result>
+		</action>
+		
+		<action name="search" class="doc.Search">
+			<result name="success">/jsp/Search.jsp</result>
 		</action>
 
 		<action name="homepage" class="doc.Homepage">

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Download file</title>
+<title>SendMeFirst.com | Download file</title>
 <script type="text/javascript">
 function downloadfile()
 {

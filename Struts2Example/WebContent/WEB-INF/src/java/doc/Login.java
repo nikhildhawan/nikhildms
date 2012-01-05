@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.Map;
 
 import model.Directory;
+import model.UserFile;
 import myutil.*;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -23,6 +24,8 @@ public class Login extends ActionSupport
 	public String execute()
 	{
 		int uid, userRootDir;
+		float usage;
+		int percent;
 		session = ActionContext.getContext().getSession();
 		conn = DB.getConnection();
 		if (conn == null)
@@ -57,10 +60,15 @@ public class Login extends ActionSupport
 					userRootDir = Directory.getUserRootDir(uid);
 					session.put("userrootdirid", userRootDir);
 					session.put("usercurrentdirid", userRootDir);
+					usage = UserFile.getUserUsage(uid);
+					session.put("usage", usage);
+					percent = (int) (usage * 2);
+					session.put("percent", percent);
 					return SUCCESS;
 				}
 				else
 				{
+					// addActionError("Bhosadi wale sql ka injection jaa ke apni gaand mein laga");
 					addActionError("Invalid Login Details");
 					return ERROR;
 				}

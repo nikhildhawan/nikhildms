@@ -221,7 +221,7 @@ public class UserFile
 		return null;
 	}
 
-	public static UserFile getFileMetadata(int fileid, int userid)
+	public static UserFile getFileMetadata(int fileid, int uid)
 	{
 		Connection conn;
 		Statement stmt;
@@ -239,7 +239,7 @@ public class UserFile
 			System.out.println("Connection succesful");
 			try
 			{
-				sqlQuery = "select * from user_files where fileid= " + fileid + " and userid= " + userid + " ";
+				sqlQuery = "select * from user_files where fileid= " + fileid + " and userid=" + uid + " ";
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery(sqlQuery);
 				if (rs.next())
@@ -273,7 +273,7 @@ public class UserFile
 		return null;
 	}
 
-	public static ArrayList<UserFile> getFileListBySearch(String name)
+	public static ArrayList<UserFile> getFileListBySearch(String name, int uid)
 	{
 
 		ArrayList<UserFile> filesearchlist = new ArrayList<UserFile>();
@@ -291,9 +291,9 @@ public class UserFile
 		{
 			try
 			{
-				System.out.println("String:" + filesearchlist + " has been recieved in model userfile func getFileListBySearch");
+				System.out.println("String:" + name + " has been recieved in model userfile func getFileListBySearch");
 				stmt = conn.createStatement();
-				sqlQuery = "select * from user_files where filename like '" + name;
+				sqlQuery = "select * from user_files where filename like '%" + name + "%' and userid=" + uid;
 				System.out.println(sqlQuery);
 				rs = stmt.executeQuery(sqlQuery);
 				while (rs.next())
@@ -303,6 +303,19 @@ public class UserFile
 					file.filename = rs.getString("filename");
 					file.filesize = rs.getInt("filesize");
 					file.filetype = rs.getString("filetype");
+					file.fileid = rs.getInt("fileid");
+					filesearchlist.add(file);
+				}
+				sqlQuery = "select s.fileid,u.filename from sharedfiles as s,user_files as u where shareduserid=" + uid + " and s.fileid=u.fileid and u.filename like '%" + name + "%'";
+				System.out.println(sqlQuery);
+				rs = stmt.executeQuery(sqlQuery);
+				while (rs.next())
+				{
+					System.out.println("Resultset shared files has data ");
+					UserFile file = new UserFile();
+					file.filename = rs.getString("filename");
+//					file.filesize = rs.getInt("filesize");
+//					file.filetype = rs.getString("filetype");
 					file.fileid = rs.getInt("fileid");
 					filesearchlist.add(file);
 				}
@@ -326,6 +339,151 @@ public class UserFile
 			return filesearchlist;
 		}
 
+	}
+
+	public static int shareFile(int uid, int fileid, int shareuid)
+	{
+
+		int result = -1;
+		Connection conn;
+		Statement stmt;
+		PreparedStatement pstmt;
+		ResultSet rs;
+		String sqlQuery;
+		conn = DB.getConnection();
+		if (conn == null)
+		{
+			return result;
+		}
+		else
+		{
+			try
+			{
+				sqlQuery = "insert into sharedfiles values(" + uid + " , " + fileid + " , " + shareuid + " ) ";
+				System.out.println(sqlQuery);
+				stmt = conn.createStatement();
+				stmt.executeUpdate(sqlQuery);
+				result = 1;
+			}
+			catch (Exception ex)
+			{
+				System.out.println("Error in inserting sharedfiles data");
+				ex.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public static ArrayList<UserFile> getSharedFilesByUserID(int uid)
+	{
+		ArrayList<UserFile> sharedfilelist = new ArrayList<UserFile>();
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		String sqlQuery;
+		conn = DB.getConnection();
+
+		if (conn == null)
+		{
+			return null;
+		}
+		else
+		{
+			try
+			{
+				System.out.println("user id" + uid + " has been recieved in model userfile func getsharedfilessssss");
+				stmt = conn.createStatement();
+				sqlQuery = "select s.userid,u.username,s.fileid,uf.filename from sharedfiles as s,users as u,user_files as uf where shareduserid=" + uid + " and id=s.userid and uf.fileid=s.fileid";
+				System.out.println(sqlQuery);
+				rs = stmt.executeQuery(sqlQuery);
+				while (rs.next())
+				{
+					System.out.println("Resultset files has data ");
+					UserFile file = new UserFile();
+					file.filename = rs.getString("filename");
+					file.fileid = rs.getInt("fileid");
+					file.filetype = rs.getString("username");
+					file.filesize = rs.getInt("userid");
+					sharedfilelist.add(file);
+				}
+			}
+			catch (Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return sharedfilelist;
+		}
+
+	}
+
+	public static float getUserUsage(int uid)
+	{
+		String usage;
+		float intusage = -1;
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		String sqlQuery = "select sum(filesize)/(1024*1024) as currentusage from user_files where userid='" + uid + "'";
+		conn = DB.getConnection();
+		try
+		{
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sqlQuery);
+			if (rs.next())
+			{
+				usage = rs.getString("currentusage");
+				System.out.println("usage is::" + usage);
+				if (usage.isEmpty())
+				{
+					usage = "0";
+				}
+				intusage = Float.parseFloat(usage);
+			}
+			return intusage;
+		}
+		catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+		finally
+		{
+			try
+			{
+				conn.close();
+			}
+			catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public String getFilename()

@@ -10,7 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class Homepage extends ActionSupport
 {
-	private ArrayList directories, files;
+	private ArrayList directories, files, sharedfiles;
 	private Map session;
 	private String username;
 	private int uid, fid, currentfid;
@@ -53,7 +53,9 @@ public class Homepage extends ActionSupport
 				}
 				directories = Directory.getDirListByFolderId(currentfid, uid);
 				files = UserFile.getFileListByFolderId(currentfid, uid);
+				sharedfiles = UserFile.getSharedFilesByUserID(uid);
 				System.out.println(files.size() + " is size of files ");
+				System.out.println(sharedfiles.size() + " is size of shared files ");
 				return SUCCESS;
 			}
 			else
@@ -66,6 +68,16 @@ public class Homepage extends ActionSupport
 		{
 			return LOGIN;
 		}
+	}
+
+	public ArrayList getSharedfiles()
+	{
+		return sharedfiles;
+	}
+
+	public void setSharedfiles(ArrayList sharedfiles)
+	{
+		this.sharedfiles = sharedfiles;
 	}
 
 	public int getCurrentfid()

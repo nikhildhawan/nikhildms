@@ -9,7 +9,7 @@
 <link rel="stylesheet"
 	href="/Struts2Example/media/css/screen.css?v=12201316" type="text/css"
 	media="screen, projection">
-<title>Login-Send me first</title>
+<title>SendMeFirst.com | Login</title>
 <style type="text/css">
 h1 {
 	padding: 0;

@@ -7,42 +7,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="/Struts2Example/media/css/screen.css"
 	type="text/css" media="screen, projection" />
-<title>SignUp - Send Me First</title>
+<title>SendMeFirst.com | SignUp</title>
 <style type="text/css">
-body td {
-	padding: 6px;
-}
+body td {	padding: 6px;}
 
-.error {
-	margin-bottom: 0px;
-}
+.error {	margin-bottom: 0px;}
 
-input.error {
-	border-color: #D70B0B;
-	border-style: solid;
-}
+input.error {	border-color: #D70B0B;	border-style: solid;}
 
-label.error {
-	padding-left: 5px;
-	color: #D70B0B;
-	border: none;
-	background: none;
-}
+label.error {	padding-left: 5px;	color: #D70B0B;	border: none; 	background: none;}
 
-form td.label {
-	width: 120px;
-}
+form td.label {	width: 120px;}
 
-form input {
-	width: 150px;
-}
+form input {	width: 150px;}
 
-form h4 {
-	padding-bottom: 4px;
-	border-bottom: 1px solid #CCCCCC;
-	margin-right: 25px;
-}
+form h4 {	padding-bottom: 4px;	border-bottom: 1px solid #CCCCCC;	margin-right: 25px; }
 </style>
+
 <script type="text/javascript">
 function validateUser() 
 {
@@ -67,7 +48,7 @@ function stateChanged()
     	var showdata = xmlHttp.responseText; 
     	if(showdata=='Exists')
     		{
-    			alert('Username already Exists','Error');
+    			alert('Username is not available','Error');
     			return false ;
     		}
     	else if(showdata=='Doesnt Exist')
@@ -109,33 +90,14 @@ function GetXmlHttpObject()
 
 </head>
 <body>
+
 	<s:action name='addcompactheader' executeResult='true' />
 
 
 	<style type="text/css">
-h1 {
-	font-size: 28px;
-	font-weight: normal;
-	color: #479332;
-	line-height: 32px;
-	margin: 25px 0 18px 0;
-	padding: 0 0 4px;
-	background-color: transparent;
-	border: none;
-	border-bottom: 1px solid #CCCCCC;
-}
+h1 {	font-size: 28px;	font-weight: normal;	color: #479332;	line-height: 32px;	margin: 25px 0 18px 0;	padding: 0 0 4px;	background-color: transparent;	border: none;	border-bottom: 1px solid #CCCCCC;}
 
-#SignUpPanel {
-	width: 550px;
-	border: 1px solid #8ED17C;
-	float: center;
-	padding: 25px 18px;
-	margin-top: 65px;
-	margin-left: auto;
-	margin-right: auto;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-}
+#SignUpPanel {	width: 550px;border: 1px solid #8ED17C;float:none;padding: 25px 18px;margin-top: 65px;margin-left: auto;margin-right: auto;-moz-border-radius: 5px;-webkit-border-radius: 5px;}
 </style>
 
 	<div id="SignUpPanel" class="span-14 suffix-1 free">
@@ -146,33 +108,27 @@ h1 {
 			folders and documents from one central location.</p>
 
 		<div id="AccountPanel">
-			<s:form class="form" id="AccountForm" style="margin:0 0 30px 0;"
-				action="register" method="POST" onsubmit="validateUser()">
+			<s:form class="AccountForm" id="AccountForm" style="margin:0 0 30px 0;" action="register" method="POST" >
 				<!--
 			<h4>Pick a user name</h4>
 			-->
 				<table>
+				<font color="red"> <s:actionerror/><s:fielderror /></font>
 					<tbody>
 						<tr>
-							<td><s:textfield class="username" name="username" value=""
-									id="Username" label="Username:" onblur="validateUser()" /></td>
+							<td><s:textfield class="username" name="username" value=""	id="Username" label="Username:" onblur="validateUser()" /></td>
 						</tr>
 						<tr>
-							<td><s:textfield name="email" value="" id="Email"
-									label="Email:" /></td>
+							<td><s:textfield name="email" value="" id="Email"	label="Email:" /></td>
 						</tr>
 						<tr>
-							<td><s:password name="password" class="password" value=""
-									id="Password" label="Password:" /></td>
+							<td><s:password name="password" class="password" value="" id="Password" label="Password:" /></td>
 						</tr>
 						<tr>
-							<td><s:password class="password2" name="password2" value=""
-									id="Password2" label="Confirm password:" /></td>
+							<td><s:password class="password2" name="password2" value="" 	id="Password2" label="Confirm password:" /></td>
 						</tr>
 						<tr>
-							<td><s:submit id="submit" type="image"
-									src="/Struts2Example/media/images/create-account.png"
-									onclick="validateUser()" /></td>
+							<td><s:submit id="submit" type="image" src="/Struts2Example/media/images/create-account.png" /></td>
 						</tr>
 					</tbody>
 				</table>
@@ -181,8 +137,7 @@ h1 {
 			<div style="margin-top: 10px;">
 				<div id="Spinner" style="display: none;">
 					<img src="/media/images/spinner3.gif" /> <span
-						style="font-size: 18px; color: #666666; padding-left: 3px; display: none;">Creating
-						account</span>
+						style="font-size: 18px; color: #666666; padding-left: 3px; display: none;">Creating Account</span>
 				</div>
 			</div>
 		</div>

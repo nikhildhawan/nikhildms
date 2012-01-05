@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Share File</title>
+<title>SendMeFirst.com | Share File</title>
 <link rel="stylesheet" href="/Struts2Example/media/css/screen.css" type="text/css" />
 </head>
 <body>
+<% if(session.getAttribute("userkey")==null){ response.sendRedirect("/Struts2Example/jsp/Login.jsp"); } %>
 	<s:action name='addcompactheader' executeResult='true' />
 	<style type="text/css">
 h1 {
@@ -34,6 +35,14 @@ h1 {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
+
+td {
+	padding-bottom: 10px;
+}
+
+td.label {
+	width: 80px;
+}
 </style>
 	<div class="share-box">
 		<s:actionerror />
@@ -44,7 +53,7 @@ h1 {
 			<table>
 				<tbody>
 					<tr>
-						<td><h2><%=request.getParameter("filename") %></h2></td>
+						<td><h2>File Name:</h2><h2 style="font-size: 10"><i><%=request.getParameter("filename") %></i></h2></td>
 					</tr>
 					<tr>
 					<s:textfield name="shareuser" label="Enter Username" />

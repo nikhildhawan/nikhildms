@@ -31,7 +31,6 @@ public class UploadFile extends ActionSupport
 		session = ActionContext.getContext().getSession();
 		if (session == null)
 		{
-
 			System.out.println("Session is null");
 		}
 		else
@@ -54,6 +53,7 @@ public class UploadFile extends ActionSupport
 			addActionError("File selected can not be greater than 50 MB");
 			return ERROR;
 		}
+
 		fileid = UserFile.saveFileMetadata(uid, uploadFileName, uploadContentType, upload.length(), curdirid);
 		UserFile.saveFile(fileid, upload);
 		return SUCCESS;

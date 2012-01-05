@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Map;
 
+import model.Directory;
+import model.User;
 import myutil.DB;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -26,10 +28,32 @@ public class Register extends ActionSupport
 	@Override
 	public String execute()
 	{
+		int userRootDir;
 		session = ActionContext.getContext().getSession();
 		conn = DB.getConnection();
+		System.out.println("Request for registering a account recieved");
 		if (conn == null)
 		{
+			return ERROR;
+		}
+		if (username.isEmpty())
+		{
+			addFieldError(username, "Username can not be empty");
+			return ERROR;
+		}
+		if (password.isEmpty())
+		{
+			addFieldError(password, "Password can not be empty");
+			return ERROR;
+		}
+		if (email.isEmpty())
+		{
+			addFieldError(email, "Email can not be empty");
+			return ERROR;
+		}
+		if ((User.findExistingUser(username)).equals("Exists"))
+		{
+			addFieldError(username, "Username is not available");
 			return ERROR;
 		}
 		System.out.println("being inserted: " + username + " " + password + " " + email + " 000000000000000000000000000000000000000");
@@ -48,6 +72,9 @@ public class Register extends ActionSupport
 			rows = stmt.executeUpdate(sqlQuery2);
 			session.put("userkey", username);
 			session.put("uid", newGeneratedUId);
+			userRootDir = Directory.getUserRootDir(newGeneratedUId);
+			session.put("userrootdirid", userRootDir);
+			session.put("usercurrentdirid", userRootDir);
 			return SUCCESS;
 		}
 		catch (Exception ex)

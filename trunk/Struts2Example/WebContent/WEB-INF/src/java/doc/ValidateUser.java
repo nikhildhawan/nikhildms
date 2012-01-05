@@ -3,6 +3,8 @@ package doc;
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import java.sql.*;
+
+import model.User;
 import myutil.DB;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -20,7 +22,7 @@ public class ValidateUser extends ActionSupport
 	{
 		if (option != null)
 		{
-			String name = findExistingUser(username);
+			String name = User.findExistingUser(username);
 			inputStream = new StringBufferInputStream(name);
 			return "ajaxCall";
 		}
@@ -28,47 +30,6 @@ public class ValidateUser extends ActionSupport
 		{
 			// to do other things.
 			return SUCCESS;
-		}
-	}
-
-	String findExistingUser(String name)
-	{
-		Connection conn;
-		Statement stmt;
-		ResultSet rs;
-		String sqlQuery = "select * from users where username='" + name + "'";
-		conn = DB.getConnection();
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sqlQuery);
-			if (rs.next())
-			{
-				return "Exists";
-			}
-			else
-			{
-				return "Doesnt Exist";
-			}
-
-		}
-		catch (SQLException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "Doesnt Exist";
-		}
-		finally
-		{
-			try
-			{
-				conn.close();
-			}
-			catch (SQLException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 	}
 

@@ -25,6 +25,8 @@ public class Comment extends ActionSupport
 			ufile = UserFile.getFileMetadata(intfileid);
 			filename = ufile.getFilename();
 			filesize = ufile.getFilesize() / (1024);
+			ufile.setFilesize(filesize);
+			System.out.println("before conversion" + ufile.getFilesize() + ": after conversion:" + filesize);
 			filetype = ufile.getFiletype();
 			filemetadata.add(ufile);
 			commentlist = model.Comment.getComment(intfileid);
@@ -40,6 +42,8 @@ public class Comment extends ActionSupport
 			ufile = UserFile.getFileMetadata(intfileid);
 			filename = ufile.getFilename();
 			filesize = ufile.getFilesize() / (1024);
+			ufile.setFilesize(filesize);
+			System.out.println("before conversion" + ufile.getFilesize() + ": after conversion:" + filesize);
 			filetype = ufile.getFiletype();
 			filemetadata.add(ufile);
 			commentlist = model.Comment.getComment(intfileid);

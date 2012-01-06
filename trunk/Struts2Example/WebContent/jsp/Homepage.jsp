@@ -4,6 +4,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
+<%		
+		response.setHeader("Cache-Control","no-store"); // HTTP 1.1 
+		response.setHeader("Pragma","no-cache"); //HTTP 1.0 
+		response.setHeader("Expires","0");
+		response.setDateHeader ("Expires", -1); 
+%>
 <script src='jquery.js' type='text/javascript'></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>SendMeFirst.com | Homepage</title>

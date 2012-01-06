@@ -73,7 +73,7 @@ public class DownloadFile extends ActionSupport
 				addActionError("Invalid Request for Download");
 				return ERROR;
 			}
-			if (uid == ufile.getUserid())
+			if (uid != ufile.getUserid())
 			{
 				System.out.println("Userid of downloaded file doesnt match with userid in session");
 				addActionError("Invalid Request for Download");

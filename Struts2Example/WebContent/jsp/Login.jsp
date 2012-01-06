@@ -65,9 +65,8 @@ td.label {
 				<input type="submit" value="Login" style="padding: 2px 12px;" /> <input
 					type="hidden" name="next" value="/accounts/profile/" />
 				<div style="float: right; padding-top: 5px; text-align: right;">
-					<a id="Forget" href="/accounts/password/reset/">Forgot
-						password?</a><br /> <a id="Forget" href="/jsp/Register.jsp">Create
-						an account now!</a>
+					<a id="Forget" href="/accounts/password/reset/">Forgot password?</a><br />
+						<a id="Forget" href="/Struts2Example/jsp/Register.jsp">Create an account now!</a>
 				</div>
 			</div>
 		</s:form>

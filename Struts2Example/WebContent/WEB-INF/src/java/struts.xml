@@ -37,6 +37,12 @@
 		
 		<action name="sharefile" class="doc.ShareFile">
 			<result name="success" type="redirectAction" >homepage</result>
+			<result name="error" >
+				<param name="location">/jsp/Sharefile.jsp</param>
+				<param name="fileid">fileid</param>
+				<param name="filename">filename</param>
+			
+			</result>
 		</action>
 
 
@@ -59,6 +65,11 @@
 		<action name="register" class="doc.Register">
 			<result name="success" type="redirectAction">homepage</result>
 			<result name="error">/jsp/Register.jsp</result>
+		</action>
+		
+		<action name="comment" class="doc.Comment">
+			<result name="success">/jsp/Comments.jsp</result>
+			<result name="error">/jsp/Comments.jsp</result>
 		</action>
 
 		<action name="sayhello" class="doc.Login">

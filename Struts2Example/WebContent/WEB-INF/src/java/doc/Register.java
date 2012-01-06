@@ -8,6 +8,7 @@ import java.util.Map;
 
 import model.Directory;
 import model.User;
+import model.UserFile;
 import myutil.DB;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -28,6 +29,8 @@ public class Register extends ActionSupport
 	@Override
 	public String execute()
 	{
+		float usage;
+		int percent;
 		int userRootDir;
 		session = ActionContext.getContext().getSession();
 		conn = DB.getConnection();
@@ -75,6 +78,10 @@ public class Register extends ActionSupport
 			userRootDir = Directory.getUserRootDir(newGeneratedUId);
 			session.put("userrootdirid", userRootDir);
 			session.put("usercurrentdirid", userRootDir);
+			usage = UserFile.getUserUsage(newGeneratedUId);
+			session.put("usage", usage);
+			percent = (int) (usage * 2);
+			session.put("percent", percent);
 			return SUCCESS;
 		}
 		catch (Exception ex)

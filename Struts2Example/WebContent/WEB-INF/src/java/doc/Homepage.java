@@ -15,6 +15,8 @@ public class Homepage extends ActionSupport
 	private String username;
 	private int uid, fid, currentfid;
 	private String option;
+	float usage;
+	int percent;
 
 	@Override
 	public String execute()
@@ -23,13 +25,17 @@ public class Homepage extends ActionSupport
 		session = ActionContext.getContext().getSession();
 		if (session != null)
 		{
+
 			username = (String) session.get("userkey");
 			if (username != null)
 			{
 				System.out.println("Username is not null and is " + username);
 				uid = (int) session.get("uid");
 				fid = Directory.getUserRootDir(uid);
-
+				usage = UserFile.getUserUsage(uid);
+				session.put("usage", usage);
+				percent = (int) (usage * 2);
+				session.put("percent", percent);
 				if (option != null && option.compareToIgnoreCase("newfolder") == 0) // Creating new folder
 				{
 					// to do call createnewfolder

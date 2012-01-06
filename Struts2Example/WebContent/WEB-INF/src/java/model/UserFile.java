@@ -9,7 +9,7 @@ import myutil.DB;
 public class UserFile
 {
 	String filename, filetype;
-	int fileid, filesize;
+	int fileid, filesize, userid;
 	int folderid, parentFolderId;
 
 	public static ArrayList<UserFile> getFileListByFolderId(int folderid, int uid)
@@ -221,14 +221,13 @@ public class UserFile
 		return null;
 	}
 
-	public static UserFile getFileMetadata(int fileid, int uid)
+	public static UserFile getFileMetadata(int fileid)
 	{
 		Connection conn;
 		Statement stmt;
 		ResultSet rs;
 		String sqlQuery;
 		conn = DB.getConnection();
-		int newGeneratedFileid = -1;
 		if (conn == null)
 		{
 //			return null;
@@ -239,12 +238,13 @@ public class UserFile
 			System.out.println("Connection succesful");
 			try
 			{
-				sqlQuery = "select * from user_files where fileid= " + fileid + " and userid=" + uid + " ";
+				sqlQuery = "select * from user_files where fileid= " + fileid + "";
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery(sqlQuery);
 				if (rs.next())
 				{
 					UserFile file = new UserFile();
+					file.userid = rs.getInt("userid");
 					file.fileid = rs.getInt("fileid");
 					file.filename = rs.getString("filename");
 					file.filetype = rs.getString("filetype");
@@ -458,10 +458,16 @@ public class UserFile
 			{
 				usage = rs.getString("currentusage");
 				System.out.println("usage is::" + usage);
-				if (usage.isEmpty())
+				if (usage == null || "null".equalsIgnoreCase(usage))
 				{
+					System.out.println("Usage is null");
 					usage = "0";
 				}
+				else
+				{
+					System.out.println("Usage not null");
+				}
+				System.out.println("Usage after handling is" + usage);
 				intusage = Float.parseFloat(usage);
 			}
 			return intusage;
@@ -484,6 +490,16 @@ public class UserFile
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public int getUserid()
+	{
+		return userid;
+	}
+
+	public void setUserid(int userid)
+	{
+		this.userid = userid;
 	}
 
 	public String getFilename()

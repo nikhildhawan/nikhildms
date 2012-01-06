@@ -30,6 +30,13 @@ public class ShareFile extends ActionSupport
 				System.out.println("Shareid of user that was entered is:" + shareuid);
 				System.out.println("id of user sharing file is:" + uid);
 				System.out.println("File that has been shared is :" + sharedfileid);
+				if (shareuid == -1)
+				{
+					addActionError("User " + shareuser + " doesnot exist");
+					setFileid(sharedfileid);
+					setFilename(filename);
+					return ERROR;
+				}
 				intfileid = Integer.parseInt(sharedfileid);
 				result = UserFile.shareFile(uid, intfileid, shareuid);
 				if (result == 1)

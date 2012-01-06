@@ -35,8 +35,8 @@ h1 {font-size: 28px;font-weight: normal;color: #479332;line-height: 32px;margin:
     <span id="usagetext"><%=session.getAttribute("usage") %> MB of 50 MB Used</span>
 </div>
 
-		<s:actionerror />
-		<s:fielderror />
+		<font color="red"><s:actionerror />
+		<s:fielderror /></font>
 		<s:form name="uploadform" action='uploadfile' method='post' style="margin-top:25px;" enctype="multipart/form-data">
 			<h1	style="display:inline-block;margin: 0 0 15px; font-size: 24px; padding-bottom: 10px; border-bottom: 2px solid #44a62a;">Upload&nbsp;File</h1>
 			<table>

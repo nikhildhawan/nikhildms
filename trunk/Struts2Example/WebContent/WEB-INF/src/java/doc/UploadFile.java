@@ -27,6 +27,7 @@ public class UploadFile extends ActionSupport
 	public String execute()
 	{
 		int uid, fid, rootdirid, curdirid, fileid;
+		float usage;
 
 		session = ActionContext.getContext().getSession();
 		if (session == null)
@@ -37,9 +38,6 @@ public class UploadFile extends ActionSupport
 		{
 			System.out.println("Session is not null");
 		}
-		uid = (int) session.get("uid");
-		curdirid = (int) session.get("usercurrentdirid");
-		System.out.println("uid:" + uid + ",curdirid" + curdirid);
 		if (upload == null)
 		{
 			System.out.println("No file was selected");
@@ -53,7 +51,17 @@ public class UploadFile extends ActionSupport
 			addActionError("File selected can not be greater than 50 MB");
 			return ERROR;
 		}
-
+		uid = (int) session.get("uid");
+		curdirid = (int) session.get("usercurrentdirid");
+		System.out.println(" file being uploaded by uid:" + uid + ", to curdirid" + curdirid);
+		usage = (float) session.get("usage");
+		if (usage + (upload.length() / (1024 * 1024)) > 50.00)
+		{
+			System.out.println("Usage has been increased more than 50 limit and will become:" + usage + (upload.length() / (1024 * 1024)));
+			addActionError("You have reached the quota limit for the account,file can not be uploaded");
+			addActionError("Space left in account  is " + (50 - usage) + " MB");
+			return ERROR;
+		}
 		fileid = UserFile.saveFileMetadata(uid, uploadFileName, uploadContentType, upload.length(), curdirid);
 		UserFile.saveFile(fileid, upload);
 		return SUCCESS;

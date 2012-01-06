@@ -18,12 +18,14 @@ td.label {	width: 80px; }
 .meter-wrap, .meter-value, .meter-text {	width: 180px; height: 30px;-webkit-border-top-left-radius: 10px;-webkit-border-bottom-left-radius: 10px;-moz-border-radius-topleft: 10px;	-moz-border-radius-bottomleft: 10px;	border-top-left-radius: 10px;	border-bottom-left-radius: 10px;}
 .meter-wrap, .meter-value {	background: #bdbdbd;}
 .meter-text {	position: absolute;top:0; left:0;padding-top: 5px;color: #fff;text-align: center;	width: 100%;}
-.user-content {width: 1000px;border: 1px solid #8ED17C;align: center;padding: 25px 18px;margin-top: 65px;margin-left: auto;margin-right: auto;-moz-border-radius: 5px;-webkit-border-radius: 5px;}
+.user-content {width:650px;border:1px solid #8ED17C;text-align:justify;padding: 25px 18px;margin-top: 65px;margin-left: auto;margin-right: auto;-moz-border-radius: 5px;-webkit-border-radius: 5px;}
 .user-content .th-header {width: 150px;font-size: 28px;font-weight: normal;color: #479332;	line-height: 32px;margin: 25px 0 18px 0;padding: 0 0 4px;	background-color:transparent;border: none;	border-bottom:1px solid #CCCCCC; }
 .user-content .td-data ,.td-download {font-size: 16px;font-weight: normal;color: #479332;line-height: 20px;margin: 25px 0 18px 0;padding: 0 0 4px;background-color: transparent;border: none;}
 .user-content .td-data:hover {	background:#f2f7ff; }
 .user-content .td-data .share {display:none;}
 .user-content .td-data:hover .share {display:inline-block;cursor: pointer;}
+.user-content .td-data .comment {display:none;}
+.user-content .td-data:hover .comment {display:inline-block;cursor: pointer;}
 .user-content .td-data .sharedby {display:none;}
 .user-content .td-data:hover .sharedby {display:inline-block;cursor: default;}
 .current-folder {font-size: 20px;margin-bottom:10px ;padding-left: 30px;background: url(/Struts2Example/media/images/folder-large.gif) no-repeat 0px 3px;}
@@ -104,10 +106,10 @@ td.label {	width: 80px; }
 				<s:actionerror/>
 				<table style="position: relative;float: center;top: 20px;">
 					<tr>
-						<th class="th-header" style="width:500px;">Name</th>
+						<th class="th-header" style="width:500px;">Files</th>
 						<th class="th-header">Download</th>
 					</tr>
-					<% if(session.getAttribute("usercurrentdirid") != session.getAttribute("userrootdirid")) { System.out.println("current folder id:"+session.getAttribute("usercurrentdirid")+" and root id"+session.getAttribute("userrootdirid")+" are different"); %>
+					<% if(session.getAttribute("usercurrentdirid") != session.getAttribute("userrootdirid")) { System.out.println("current folder id:"+session.getAttribute("usercurrentdirid")+": and root id:"+session.getAttribute("userrootdirid")+": are different"); %>
 					<tr>
 					<td  class="td-data" style="width: 500px; color:peru"><img	src="/Struts2Example/media/images/go-to-parent.gif" />&nbsp&nbsp<a href="homepage?option=parentdirectory&currentfid=<%= session.getAttribute("usercurrentdirid") %> ">Parent Folder </a></td>
 					</tr>
@@ -119,7 +121,10 @@ td.label {	width: 80px; }
 					</s:iterator>
 					<s:iterator value="files">
 						<tr>
-							<td class="td-data" style="width: 500px"><s:property	value="filename" /><span class="share"  style="color:blue" onclick="location.href='/Struts2Example/jsp/Sharefile.jsp?fileid=<s:property value="fileid" />&filename=<s:property value="filename" />' ">&nbsp&nbspshare this file</span></td>
+							<td class="td-data" style="width: 500px"><s:property	value="filename" />
+								<span class="share"  style="color:blue" onclick="location.href='/Struts2Example/jsp/Sharefile.jsp?sharedfileid=<s:property value="fileid" />&filename=<s:property value="filename" />' ">&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Struts2Example/media/images/sharing.gif" title="Share this file"></span>
+								<span class="comment"  style="color:blue" >&nbsp;&nbsp;&nbsp;&nbsp;<a href="comment?fileid=<s:property value="fileid" />"><img src="/Struts2Example/media/images/commentsmall.png" title="View Comments"></a></span>
+							</td>
 							
 							<td class="td-download"><a href="downloadfile?fileid=<s:property value="fileid" />">Download</a></td>
 						</tr>
@@ -133,7 +138,9 @@ td.label {	width: 80px; }
 					<table>
 					<s:iterator value="sharedfiles">
 						<tr>
-							<td class="td-data" style="width: 500px"><s:property	value="filename" /><span class="sharedby"  style="color:blue" >&nbsp&nbspshared by <s:property	value="filetype" /></span></td>
+							<td class="td-data" style="width: 500px"><s:property	value="filename" /><span class="sharedby"  style="color:blue" >&nbsp&nbspshared by <s:property	value="filetype" /></span>
+								<span class="comment"  style="color:blue" >&nbsp;&nbsp;&nbsp;&nbsp;<a href="comment?fileid=<s:property value="fileid" />"><img src="/Struts2Example/media/images/commentsmall.png" title="View Comments"></a></span>
+							</td>
 							<td class="td-data"><a href="downloadfile?fileid=<s:property value="fileid" />&shareduid=<s:property value="filesize" />">Download</a></td>
 						</tr>
 					</s:iterator>

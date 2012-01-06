@@ -187,21 +187,21 @@
 							<ul>
 								<% if(session.getAttribute("userkey")!=null)
 							{ %>	
-								<li><a class="mydocs-tab" href="homepage?option=changedirectory&currentfid=<%=session.getAttribute("userrootdirid")%>">My Documents</a></li>
+								<li><a class="mydocs-tab" href="homepage?option=changedirectory&currentfid=<%=session.getAttribute("userrootdirid")%>">Home Folder</a></li>
 							<% } %>
 								<!-- 							<li><a href="/partner-program/">Partner Program</a></li> -->
 								<!-- 							<li><a href="/api/">API</a></li> -->
 
-								<li class="feedback">
-									<!--Feedback dropdown for normal header--> <a
-									class="has-subnav" href="javascript:{}">Support</a>
-									<ul class="subnav">
-										<li><a class="email-feedback" href="javascript:{}" onclick="">Send Feedback</a></li>
-										<li><a href="" target="_blank">User Forum</a></li>
-										<li class="no-chatback"><a href="javascript:{}">Chat Offline</a></li>
-										<li class="chatback" style="display: none;"><a	href="javascript:{}">Live Chat</a></li>
-									</ul>
-								</li>
+<!-- 								<li class="feedback"> -->
+<!-- 									Feedback dropdown for normal header <a -->
+<!-- 									class="has-subnav" href="javascript:{}">Support</a> -->
+<!-- 									<ul class="subnav"> -->
+<!-- 										<li><a class="email-feedback" href="javascript:{}" onclick="">Send Feedback</a></li> -->
+<!-- 										<li><a href="" >User Forum</a></li> -->
+<!-- 										<li class="no-chatback"><a href="javascript:{}">Chat Offline</a></li> -->
+<!-- 										<li class="chatback" style="display: none;"><a	href="javascript:{}">Live Chat</a></li> -->
+<!-- 									</ul> -->
+<!-- 								</li> -->
 
 								<li>
 									<% if(session.getAttribute("userkey")!=null)

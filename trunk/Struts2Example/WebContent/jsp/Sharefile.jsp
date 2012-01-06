@@ -49,7 +49,8 @@ td.label {
 		<s:fielderror />
 		<s:form action='sharefile'   method='post' style="margin-top:25px;" >
 			<h1	style="display:inline-block;margin: 0 0 15px; font-size: 24px; padding-bottom: 10px; border-bottom: 2px solid #44a62a;">Share&nbspFile</h1>
-			<input type="hidden" name="sharedfileid" value="<%=request.getParameter("fileid") %>">
+			<input type="hidden" name="sharedfileid" value="<%=request.getParameter("sharedfileid") %>">
+			<input type="hidden" name="filename" value="<%=request.getParameter("filename") %>">
 			<table>
 				<tbody>
 					<tr>

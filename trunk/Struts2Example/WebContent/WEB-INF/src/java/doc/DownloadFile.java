@@ -66,13 +66,20 @@ public class DownloadFile extends ActionSupport
 				addActionError("Invalid Request for Download");
 				return ERROR;
 			}
-			UserFile ufile = UserFile.getFileMetadata(intfileid, uid);
+			UserFile ufile = UserFile.getFileMetadata(intfileid);
 			if (ufile == null)
 			{
 				System.out.println("Null userfile object was recieved");
 				addActionError("Invalid Request for Download");
 				return ERROR;
 			}
+			if (uid == ufile.getUserid())
+			{
+				System.out.println("Userid of downloaded file doesnt match with userid in session");
+				addActionError("Invalid Request for Download");
+				return ERROR;
+			}
+
 			contentDisposition = "attachment;filename=" + ufile.getFilename();
 			contentType = ufile.getFiletype();
 			try

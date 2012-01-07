@@ -4,11 +4,20 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
+<%		
+		response.setHeader("Cache-Control","no-store"); // HTTP 1.1 
+		response.setHeader("Pragma","no-cache"); //HTTP 1.0 
+		response.setHeader("Expires","0");
+		response.setDateHeader ("Expires", -1); 
+%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Comments</title>
-<link rel="stylesheet" href="/Struts2Example/media/css/screen.css" type="text/css" />
+<title>SendMeFirst.com | Comments</title>
+<link rel="stylesheet"
+	href="/Struts2Example/media/css/screen.css?v=12201316" type="text/css"
+	media="screen, projection">
 </head>
 <body>
+<% if(session.getAttribute("userkey")==null){ response.sendRedirect("/Struts2Example/jsp/Login.jsp"); } %>
 <style type="text/css">
 .comment-box {	width: 550px;border: 1px solid #8ED17C;	float: center;	padding: 25px 18px;	margin-top: 65px;	margin-left: auto;	margin-right: auto;	-moz-border-radius: 5px;	-webkit-border-radius: 5px;}
 .comment-text{width: 500px;height: 25px;margin-left: auto;margin-right: auto}
@@ -37,7 +46,7 @@ h6 {margin:1px;color: black;margin-left: 20px}
 		<br><br>
 		<button class="commentbutton" type="submit" value="Post">Post Comment</button>
 	</form>
-	<br><br>
+	<br><br><br><br><br><br>
 	<table>
 		<s:iterator value="commentlist">
 		<tr>

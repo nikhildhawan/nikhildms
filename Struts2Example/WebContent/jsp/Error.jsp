@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/Struts2Example/media/css/screen.css" type="text/css" />
 </head>
 <body>
-<% if(session.getAttribute("userkey")==null){ response.sendRedirect("/Struts2Example/jsp/Login.jsp"); } %>
+<%-- <% if(session.getAttribute("userkey")==null){ response.sendRedirect("/Struts2Example/jsp/Login.jsp"); } %> --%>
 	<s:action name='addcompactheader' executeResult='true' />
 	<style type="text/css">
 h1 {
@@ -51,27 +51,45 @@ td.label {
 }
 </style>
 	<div class="share-box">
-		<font color="red"><s:actionerror />
-		<s:fielderror /></font>
-		<s:form action='sharefile'   method='post' style="margin-top:25px;" >
-			<h1	style="display:inline-block;margin: 0 0 15px; font-size: 24px; padding-bottom: 10px; border-bottom: 2px solid #44a62a;">Share&nbspFile</h1>
-			<input type="hidden" name="sharedfileid" value="<%=request.getParameter("sharedfileid") %>">
-			<input type="hidden" name="filename" value="<%=request.getParameter("filename") %>">
-			<table>
-				<tbody>
-					<tr>
-						<td><h2>File Name:</h2><h2 style="font-size: 10"><i><%=request.getParameter("filename") %></i></h2></td>
-					</tr>
-					<tr>
-					<s:textfield name="shareuser" label="Enter Username" />
-					</tr>
-				</tbody>
-			</table>
-
-			<div style="margin: 0;">
-				<input type="submit" value="Share File" style="padding: 2px 12px;" />
+		<div class="two-tiers">
+			<div class="content-title">
+				<h1>Error 404 - We are Sorry but this page doesn't exist !</h1>
 			</div>
-		</s:form>
+			
+		Don't worry !, you aren't here for nothing<br><br>
+		We give you 2 drink recipes<br><br>
+		<b>1. Pina Colada recipe : </b><br>
+		
+		<ul class="recipe">
+			<li>» 2 oz light rum</li>
+			<li>» 3 oz pineapple juice</li>
+			<li>» 2 oz Coco Lopez coconut cream</li>
+			<li>» Ice</li>
+		</ul>
+		<br>
+		 Mix in blender and pour into colada glass. Serve with cherry and pineapple spear.<br><br><br>		 
+		 
+		 
+		 <b>2. Martini Cocktail, Dry recipe :</b><br>
+		 <ul class="recipe">
+			<li>» 1 oz gin</li>
+			<li>» 1/2 oz French dry vermouth</li>
+			<li>» 2 dashes orange bitters</li>
+			<li>» Olive</li>
+		</ul>
+		<br>
+		In a shaker filled with ice, combine liquids and stir. Strain into cocktail glass. Garnish with olive.<br><br>
+		
+		So happy ?
+
+
+		<h3><a href="homepage">Check Our Home Page for more fun</a></h3>
+		<ul class="gallery archive">
+		
+				<ul>
+
+
+	</ul></ul></div>
 	</div>
 </body>
 </html>

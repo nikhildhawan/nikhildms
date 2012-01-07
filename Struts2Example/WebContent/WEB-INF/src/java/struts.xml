@@ -8,10 +8,9 @@
 
 	<package name="doc" extends="struts-default">
 
-
 		<global-results>
 			<result name="login">/jsp/Login.jsp</result>
-			<!-- <result name="invalid.token">/Error.jsp</result> -->
+			<result name="error">/jsp/Error.jsp</result>
 			<!-- <result name="login" type="redirectAction">Logon!input</result> -->
 		</global-results>
 
@@ -19,6 +18,18 @@
 			<result name="success">/index.jsp</result>
 		</action>
 		
+		<action name="deletefile" class="doc.Delete">
+			<result name="success" type="redirectAction">homepage</result>
+		</action>
+		
+		<action name="deletefolder" class="doc.DeleteFolder">
+			<result name="success" type="redirectAction">homepage</result>
+		</action>
+		
+		<action name="forgot" class="doc.Forgot">
+			<result name="success">/jsp/Login.jsp</result>
+			<result name="error">/jsp/ForgotPassword.jsp</result>
+		</action>
 
 
 		<action name="addcompactheader">

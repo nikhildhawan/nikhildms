@@ -34,12 +34,12 @@ public class Login extends ActionSupport
 			return ERROR;
 		}
 		System.out.println("Username is:" + username + ":  and password is:" + password);
-		if (username.isEmpty())
+		if (username == null)
 		{
 			addActionError("Username can not be empty");
 			return ERROR;
 		}
-		if (password.isEmpty())
+		if (password == null)
 		{
 			addActionError("Password can not be empty");
 			return ERROR;

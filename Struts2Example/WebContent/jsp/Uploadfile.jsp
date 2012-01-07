@@ -4,9 +4,17 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
+<%		
+		response.setHeader("Cache-Control","no-store"); // HTTP 1.1 
+		response.setHeader("Pragma","no-cache"); //HTTP 1.0 
+		response.setHeader("Expires","0");
+		response.setDateHeader ("Expires", -1); 
+%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>SendMeFirst.com | Upload File</title>
-
+<link rel="stylesheet"
+	href="/Struts2Example/media/css/screen.css?v=12201316" type="text/css"
+	media="screen, projection">
 </head>
 <body>
 <% if(session.getAttribute("userkey")==null){ response.sendRedirect("/Struts2Example/jsp/Login.jsp"); } %>

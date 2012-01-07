@@ -492,6 +492,42 @@ public class UserFile
 		}
 	}
 
+	public static int deleteFile(int fileid)
+	{
+
+		String usage;
+		int intusage = -1;
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		String sqlQuery = "delete from user_files where fileid=" + fileid;
+		conn = DB.getConnection();
+		try
+		{
+			stmt = conn.createStatement();
+			intusage = stmt.executeUpdate(sqlQuery);
+			return intusage;
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+			return intusage;
+		}
+		finally
+		{
+			try
+			{
+				conn.close();
+			}
+			catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
 	public int getUserid()
 	{
 		return userid;

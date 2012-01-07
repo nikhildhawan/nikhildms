@@ -15,7 +15,7 @@
 <link rel="stylesheet"
 	href="/Struts2Example/media/css/screen.css?v=12201316" type="text/css"
 	media="screen, projection">
-<title>SendMeFirst.com | Login</title>
+<title>SendMeFirst.com | Create New Folder</title>
 <style type="text/css">
 h1 {
 	padding: 0;
@@ -32,7 +32,7 @@ td.label {
 	width: 80px;
 }
 
-.login-box {
+.createfolder-box {
 	width: 380px;
 	border: 1px solid #8ED17C;
 	align: center;
@@ -48,31 +48,21 @@ td.label {
 <body>
 
 	<s:action name='addcompactheader' executeResult='true' />
-	<div class="login-box">
-		<s:actionerror />
-		<s:fielderror />
-		<s:form action='sayhello' method='post' style="margin-top:25px;">
-			<h1 style="margin: 0 0 15px; font-size: 24px; padding-bottom: 10px; border-bottom: 2px solid #44a62a;">Login</h1>
+	<div class="createfolder-box">
+		<font color="red"><s:actionerror />
+		<s:fielderror /></font>
+		<s:form action='homepage?option=newfolder' method='post' style="margin-top:25px;">
+			<h1 style="margin: 0 0 15px; font-size: 24px; padding-bottom: 10px; border-bottom: 2px solid #44a62a;">Create New Folder</h1>
 			<table>
 				<tbody>
 					<tr>
-						<td><s:textfield name="username" value="" id="username"
-								label="Username" /></td>
-					</tr>
-					<tr>
-						<td><s:password name="password" value="" id="password"
-								label="Password" /></td>
+						<td><s:textfield name="newfoldername" value="" id="newfoldername"	label="Enter Folder name" /></td>
 					</tr>
 				</tbody>
 			</table>
 
 			<div style="margin: 0;">
-				<input type="submit" value="Login" style="padding: 2px 12px;" /> <input
-					type="hidden" name="next" value="/accounts/profile/" />
-				<div style="float: right; padding-top: 5px; text-align: right;">
-					<a id="Forget" href="/Struts2Example/jsp/ForgotPassword.jsp">Forgot password?</a><br />
-						<a id="Forget" href="/Struts2Example/jsp/Register.jsp">Create an account now!</a>
-				</div>
+				<input type="submit" value="Create" style="padding: 2px 12px;" /> 
 			</div>
 		</s:form>
 	</div>

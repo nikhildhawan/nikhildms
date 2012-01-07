@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="/Struts2Example/media/css/screen.css"
-	type="text/css" media="screen, projection" />
+<link rel="stylesheet"
+	href="/Struts2Example/media/css/screen.css?v=12201316" type="text/css"
+	media="screen, projection">
 <title>SendMeFirst.com | SignUp</title>
 <style type="text/css">
-body td {	padding: 6px;}
+td {	padding: 6px;}
 
 .error {	margin-bottom: 0px;}
 
@@ -28,11 +29,19 @@ form h4 {	padding-bottom: 4px;	border-bottom: 1px solid #CCCCCC;	margin-right: 2
 function validateUser() 
 {
 	var username=document.getElementById("Username").value;
+	var x=document.forms["AccountForm"]["email"].value;
+	var atpos=x.indexOf("@");
+	var dotpos=x.lastIndexOf(".");
 	if(username=="")
 		{
 			alert("Username Empty");
 			return false ;
 		}
+	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+	  {
+	  alert("Not a valid e-mail address");
+	  return false;
+	  }
 	xmlHttp=GetXmlHttpObject();
 	var url="validateuser.action";
 	url=url+"?option=validateuser&username="+username;
@@ -85,9 +94,6 @@ function GetXmlHttpObject()
 	return xmlHttp;
 }
 </script>
-
-
-
 </head>
 <body>
 
@@ -108,10 +114,7 @@ h1 {	font-size: 28px;	font-weight: normal;	color: #479332;	line-height: 32px;	ma
 			folders and documents from one central location.</p>
 
 		<div id="AccountPanel">
-			<s:form class="AccountForm" id="AccountForm" style="margin:0 0 30px 0;" action="register" method="POST" >
-				<!--
-			<h4>Pick a user name</h4>
-			-->
+			<form class="AccountForm" id="AccountForm" style="margin:0 0 30px 0;" action="register" method="POST"  onSubmit="return validateUser();">
 				<table>
 				<font color="red"> <s:actionerror/><s:fielderror /></font>
 					<tbody>
@@ -125,15 +128,14 @@ h1 {	font-size: 28px;	font-weight: normal;	color: #479332;	line-height: 32px;	ma
 							<td><s:password name="password" class="password" value="" id="Password" label="Password:" /></td>
 						</tr>
 						<tr>
-							<td><s:password class="password2" name="password2" value="" 	id="Password2" label="Confirm password:" /></td>
+							<td><s:password class="password2" name="password2" value="" id="Password2" label="Confirm password:" /></td>
 						</tr>
 						<tr>
-							<td><s:submit id="submit" type="image" src="/Struts2Example/media/images/create-account.png" /></td>
+							<td><s:submit id="submit" type="image" src="/Struts2Example/media/images/create-account.png" onclick="return validateData();"  /></td>
 						</tr>
 					</tbody>
 				</table>
-			</s:form>
-
+			</form>
 			<div style="margin-top: 10px;">
 				<div id="Spinner" style="display: none;">
 					<img src="/media/images/spinner3.gif" /> <span

@@ -71,10 +71,12 @@ public class User
 			rs = stmt.executeQuery(sqlQuery);
 			if (rs.next())
 			{
+				System.out.println("Inside db function username exists");
 				return "Exists";
 			}
 			else
 			{
+				System.out.println("Inside db function username does not exists");
 				return "Doesnt Exist";
 			}
 

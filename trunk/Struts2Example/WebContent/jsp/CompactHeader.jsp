@@ -4,13 +4,18 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
+<%		
+		response.setHeader("Cache-Control","no-store"); // HTTP 1.1 
+		response.setHeader("Pragma","no-cache"); //HTTP 1.0 
+		response.setHeader("Expires","0");
+		response.setDateHeader ("Expires", -1); 
+%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>SendMeFirst.com</title>
 <!-- <link rel="stylesheet" href="/Struts2Example/media/css/screen.css" type="text/css" media="screen, projection" />  -->
 <script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
 </head>
 <body>
-
+<% if(session.getAttribute("userkey")==null){ response.sendRedirect("/Struts2Example/jsp/Login.jsp"); } %>
 	<div id="wrap">
 		<div id="main" class="clearfix">
 			<style type="text/css">
@@ -179,7 +184,7 @@
 				<div class="header compact-header">
 					<div class="content clearfix">
 						<div class="logo">
-							<a href="/Struts2Example/jsp/Homepage.jsp"><img id="logo"
+							<a href="homepage"><img id="logo"
 								border="0" src="/Struts2Example/media/images/logo-small.png"
 								alt="sendmefirst" width="200" height="42" /> </a>
 						</div>

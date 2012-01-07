@@ -41,10 +41,12 @@ public class ShareFile extends ActionSupport
 				result = UserFile.shareFile(uid, intfileid, shareuid);
 				if (result == 1)
 				{
+					addActionError("The file " + filename + " has been shared with user " + shareuser + "");
 					return SUCCESS;
 				}
 				else
 				{
+					addActionError("The file " + filename + " can not be shared with user " + shareuser + "");
 					return ERROR;
 				}
 			}

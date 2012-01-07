@@ -23,12 +23,12 @@ public class ValidateUser extends ActionSupport
 		if (option != null)
 		{
 			String name = User.findExistingUser(username);
+			System.out.println("checking user" + username + " which returned" + name + "");
 			inputStream = new StringBufferInputStream(name);
 			return "ajaxCall";
 		}
 		else
 		{
-			// to do other things.
 			return SUCCESS;
 		}
 	}

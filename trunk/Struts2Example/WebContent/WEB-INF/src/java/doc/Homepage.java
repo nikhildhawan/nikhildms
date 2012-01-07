@@ -12,7 +12,7 @@ public class Homepage extends ActionSupport
 {
 	private ArrayList directories, files, sharedfiles;
 	private Map session;
-	private String username;
+	private String username, newfoldername, foldername;
 	private int uid, fid, currentfid;
 	private String option;
 	float usage;
@@ -25,9 +25,8 @@ public class Homepage extends ActionSupport
 		session = ActionContext.getContext().getSession();
 		if (session != null)
 		{
-
 			username = (String) session.get("userkey");
-			if (username != null)
+			if (username != null) // Invalid Session redirect to login
 			{
 				System.out.println("Username is not null and is " + username);
 				uid = (int) session.get("uid");
@@ -40,14 +39,14 @@ public class Homepage extends ActionSupport
 				{
 					// to do call createnewfolder
 					currentfid = (int) session.get("usercurrentdirid");
-					Directory.createNewFolder("New Folder", currentfid, uid);
+					Directory.createNewFolder(newfoldername, currentfid, uid);
 				}
-				if (option != null && option.compareToIgnoreCase("changedirectory") == 0)
+				if (option != null && option.compareToIgnoreCase("changedirectory") == 0) // Changing directory
 				{
 					// System.out.println(newfid);
 					session.put("usercurrentdirid", currentfid);
 				}
-				if (option != null && option.compareToIgnoreCase("parentdirectory") == 0)
+				if (option != null && option.compareToIgnoreCase("parentdirectory") == 0) // Go to parent directory
 				{
 					// System.out.println(newfid);
 					currentfid = Directory.getParentFolderId(currentfid);
@@ -55,8 +54,9 @@ public class Homepage extends ActionSupport
 				}
 				else
 				{
-					currentfid = (int) session.get("usercurrentdirid");
+					currentfid = (int) session.get("usercurrentdirid"); // no options recieved set current direcetory to root directory of user.
 				}
+				foldername = Directory.getFolderName(currentfid);
 				directories = Directory.getDirListByFolderId(currentfid, uid);
 				files = UserFile.getFileListByFolderId(currentfid, uid);
 				sharedfiles = UserFile.getSharedFilesByUserID(uid);
@@ -74,6 +74,26 @@ public class Homepage extends ActionSupport
 		{
 			return LOGIN;
 		}
+	}
+
+	public String getFoldername()
+	{
+		return foldername;
+	}
+
+	public void setFoldername(String foldername)
+	{
+		this.foldername = foldername;
+	}
+
+	public String getNewfoldername()
+	{
+		return newfoldername;
+	}
+
+	public void setNewfoldername(String newfoldername)
+	{
+		this.newfoldername = newfoldername;
 	}
 
 	public ArrayList getSharedfiles()

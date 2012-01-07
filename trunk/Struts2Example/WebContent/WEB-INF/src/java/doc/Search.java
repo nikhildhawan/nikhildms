@@ -18,7 +18,7 @@ public class Search extends ActionSupport
 	@Override
 	public String execute()
 	{
-		if (searchtext.isEmpty())
+		if (searchtext == null)
 		{
 			searchtext = "";
 		}

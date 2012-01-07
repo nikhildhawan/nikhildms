@@ -13,7 +13,9 @@
 <script src='jquery.js' type='text/javascript'></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>SendMeFirst.com | Homepage</title>
-<link rel="stylesheet" href="/Struts2Example/media/css/screen.css" type="text/css" />
+<link rel="stylesheet"
+	href="/Struts2Example/media/css/screen.css?v=12201316" type="text/css"
+	media="screen, projection">
 <style type="text/css">
 h1 {	padding: 0;	border: none;	background-color: transparent;	color: #227A0A;	font-weight: bold;}
 td {	padding-bottom: 10px;}
@@ -30,6 +32,8 @@ td.label {	width: 80px; }
 .user-content .td-data:hover {	background:#f2f7ff; }
 .user-content .td-data .share {display:none;}
 .user-content .td-data:hover .share {display:inline-block;cursor: pointer;}
+.user-content .td-data .delete {display:none;}
+.user-content .td-data:hover .delete {display:inline-block;cursor: pointer;}
 .user-content .td-data .comment {display:none;}
 .user-content .td-data:hover .comment {display:inline-block;cursor: pointer;}
 .user-content .td-data .sharedby {display:none;}
@@ -57,8 +61,9 @@ td.label {	width: 80px; }
 				    </div>
 				    <span id="usagetext"><%=session.getAttribute("usage") %> MB of 50 MB Used</span>
 				</div>
+				<font color="red"><s:actionerror/></font>
 				<div class="folder-header">
-					<span class="current-folder"><%=session.getAttribute("usercurrentdirid") %></span>
+					<span class="current-folder"><s:property value="foldername"/></span>
 				</div>
 				
 				<style type="text/css">
@@ -105,7 +110,7 @@ td.label {	width: 80px; }
 				<div id="UploadButton"></div>
 				<div class="toolbar buttons">
 				<a href="/Struts2Example/jsp/Uploadfile.jsp"><button id="AddDocBtn" class="gray-button"><span>Add Document</span></button></a>
-				<a href="homepage?option=newfolder"><button class="new-folder gray-button"><span>New Folder</span></button></a>
+				<a href="/Struts2Example/jsp/CreateFolder.jsp"><button class="new-folder gray-button"><span>New Folder</span></button></a>
 				<a href="/Struts2Example/jsp/Search.jsp"><button class="search gray-button"><span>Search Files</span></button></a>
 				</div>
 				<div class="listview selectable" style="min-height: 36px;position: relative ">
@@ -122,14 +127,17 @@ td.label {	width: 80px; }
 					<%	} %>
 					<s:iterator value="directories">
 						<tr>
-							<td class="td-data" style="width: 500px; color:peru"><img	src="/Struts2Example/media/images/folder.gif" />&nbsp&nbsp<a href="homepage?option=changedirectory&currentfid=<s:property value="folderid" />"><s:property	value="foldername" /></a></td>
+							<td class="td-data" style="width: 500px; color:peru"><img	src="/Struts2Example/media/images/folder.gif" />&nbsp&nbsp<a href="homepage?option=changedirectory&currentfid=<s:property value="folderid" />"><s:property	value="foldername" /></a>
+								<span class="delete"   >&nbsp;&nbsp;&nbsp;&nbsp;<a href="deletefolder?folderid=<s:property value="folderid" />"><img src="/Struts2Example/media/images/delete.gif" title="Delete Folder and all files in it."></a></span>
+							</td>
 						</tr>
 					</s:iterator>
 					<s:iterator value="files">
 						<tr>
 							<td class="td-data" style="width: 500px"><s:property	value="filename" />
-								<span class="share"  style="color:blue" onclick="location.href='/Struts2Example/jsp/Sharefile.jsp?sharedfileid=<s:property value="fileid" />&filename=<s:property value="filename" />' ">&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Struts2Example/media/images/sharing.gif" title="Share this file"></span>
-								<span class="comment"  style="color:blue" >&nbsp;&nbsp;&nbsp;&nbsp;<a href="comment?fileid=<s:property value="fileid" />"><img src="/Struts2Example/media/images/commentsmall.png" title="View Comments"></a></span>
+								<span class="share"  onclick="location.href='/Struts2Example/jsp/Sharefile.jsp?sharedfileid=<s:property value="fileid" />&filename=<s:property value="filename" />' ">&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Struts2Example/media/images/sharing.gif" title="Share this file"></span>
+								<span class="comment"  >&nbsp;&nbsp;&nbsp;&nbsp;<a href="comment?fileid=<s:property value="fileid" />"><img src="/Struts2Example/media/images/commentsmall.png" title="View Comments"></a></span>
+								<span class="delete"   >&nbsp;&nbsp;&nbsp;&nbsp;<a href="deletefile?fileid=<s:property value="fileid" />"><img src="/Struts2Example/media/images/delete.gif" title="Delete File"></a></span>
 							</td>
 							
 							<td class="td-download"><a href="downloadfile?fileid=<s:property value="fileid" />">Download</a></td>

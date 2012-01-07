@@ -192,6 +192,84 @@ public class Directory
 		return parentId;
 	}
 
+	public static String getFolderName(int folderid)
+	{
+		String foldername = "";
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		String sqlQuery;
+		conn = DB.getConnection();
+		if (conn == null)
+		{
+			return foldername;
+		}
+		else
+		{
+			try
+			{
+				stmt = conn.createStatement();
+				sqlQuery = "select foldername from user_folders where folderid=" + folderid;
+				rs = stmt.executeQuery(sqlQuery);
+				if (rs.next())
+				{
+					foldername = rs.getString("foldername");
+				}
+			}
+			catch (Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return foldername;
+
+	}
+
+	public static int deleteFolder(int folderid)
+	{
+		int result = -1;
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		String sqlQuery = "delete from user_folders where folderid=" + folderid;
+		conn = DB.getConnection();
+		try
+		{
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(sqlQuery);
+			return result;
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+			return result;
+		}
+		finally
+		{
+			try
+			{
+				conn.close();
+			}
+			catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public int getFolderid()
 	{
 		return folderid;

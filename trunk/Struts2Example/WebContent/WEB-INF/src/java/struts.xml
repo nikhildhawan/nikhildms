@@ -31,6 +31,11 @@
 			<result name="error">/jsp/ForgotPassword.jsp</result>
 		</action>
 
+		<action name="allversions" class="doc.AllVersion">
+			<result name="success">/jsp/AllVersions.jsp</result>
+			<result name="error" type="redirectAction">homepage</result>
+		</action>
+
 
 		<action name="addcompactheader">
 			<result name="success">/jsp/CompactHeader.jsp</result>

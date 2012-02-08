@@ -11,8 +11,9 @@ public class UserFile
 	String filename, filetype;
 	int fileid, filesize, userid;
 	int folderid, parentFolderId;
+	int version;
 
-	public static ArrayList<UserFile> getFileListByFolderId(int folderid, int uid)
+	public static ArrayList<UserFile> getDistinctFileListByFolderId(int folderid, int uid)
 	{
 		ArrayList<UserFile> filelist = new ArrayList<UserFile>();
 		Connection conn;
@@ -31,13 +32,14 @@ public class UserFile
 			{
 				System.out.println("user id" + uid + " has been recieved in model userfile func getfilelistbyfolderid");
 				stmt = conn.createStatement();
-				sqlQuery = "select * from user_files where parentfolderid=" + folderid + " and userid=" + uid + "";
+				sqlQuery = "select distinct(filename),version as lastversion,filesize,filetype,fileid from user_files where parentfolderid=" + folderid + " and userid=" + uid + " order by version desc limit 1";
 				System.out.println(sqlQuery);
 				rs = stmt.executeQuery(sqlQuery);
 				while (rs.next())
 				{
 					System.out.println("Resultset files has data ");
 					UserFile file = new UserFile();
+					file.version = rs.getInt("lastversion");
 					file.filename = rs.getString("filename");
 					file.filesize = rs.getInt("filesize");
 					file.filetype = rs.getString("filetype");
@@ -66,7 +68,7 @@ public class UserFile
 
 	}
 
-	public static int saveFileMetadata(int uid, String fileName, String fileType, long fileSize, int parentfolderid)
+	public static int saveFileMetadata(int uid, String filename, String fileType, long fileSize, int parentfolderid)
 	{
 		System.out.println("hello from savefilemetadata");
 		Connection conn;
@@ -74,7 +76,7 @@ public class UserFile
 		ResultSet rs;
 		String sqlQuery;
 		conn = DB.getConnection();
-		int newGeneratedFileid = -1;
+		int newGeneratedFileid = -1, version;
 		if (conn == null)
 		{
 //			return null;
@@ -85,7 +87,9 @@ public class UserFile
 			System.out.println("Connection succesful");
 			try
 			{
-				sqlQuery = "insert into user_files (userid,filename,filetype,filesize,parentfolderid) values (" + uid + " , '" + fileName + "' , '" + fileType + "' , " + fileSize + " , " + parentfolderid + " ) ";
+				version = getMaxVersion(filename, parentfolderid);
+				version = version + 1;
+				sqlQuery = "insert into user_files (userid,filename,filetype,filesize,parentfolderid,version) values (" + uid + " , '" + filename + "' , '" + fileType + "' , " + fileSize + " , " + parentfolderid + "," + version + " ) ";
 				stmt = conn.createStatement();
 				System.out.println(sqlQuery);
 				stmt.executeUpdate(sqlQuery, Statement.RETURN_GENERATED_KEYS);
@@ -120,6 +124,61 @@ public class UserFile
 			}
 		}
 		return newGeneratedFileid;
+	}
+
+	public static int getMaxVersion(String filename, int folderid)
+	{
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		String sqlQuery;
+		conn = DB.getConnection();
+		int version = -1;
+		if (conn == null)
+		{
+//			return null;
+			System.out.println("Connection is null in userfile..java");
+		}
+		else
+		{
+			System.out.println("Connection succesful");
+			try
+			{
+
+				sqlQuery = "select max(version) from user_files where filename='" + filename + "' and parentfolderid=" + folderid;
+				stmt = conn.createStatement();
+				System.out.println(sqlQuery);
+				rs = stmt.executeQuery(sqlQuery);
+				if (rs.next())
+				{
+					version = rs.getInt(1);
+					System.out.println("max version is " + version);
+					return version;
+				}
+				else
+				{
+					System.out.println("no version generated");
+				}
+			}
+			catch (Exception ex)
+			{
+				ex.getStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return version;
+
 	}
 
 	public static int saveFile(int fileid, File file)
@@ -385,6 +444,72 @@ public class UserFile
 		}
 
 		return result;
+	}
+
+	public static ArrayList<UserFile> getAllVersions(String filename, int folderid)
+	{
+		ArrayList<UserFile> filelist = new ArrayList<UserFile>();
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		String sqlQuery;
+		conn = DB.getConnection();
+		if (conn == null)
+		{
+//			return null;
+			System.out.println("Connection is null in userfile..java");
+		}
+		else
+		{
+			System.out.println("Connection succesful");
+			try
+			{
+				sqlQuery = "select * from user_files where parentfolderid=" + folderid + " and  filename ='" + filename + "'";
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sqlQuery);
+				while (rs.next())
+				{
+					System.out.println("other version of file available" + filename);
+					UserFile file = new UserFile();
+					file.version = rs.getInt("version");
+					file.userid = rs.getInt("userid");
+					file.fileid = rs.getInt("fileid");
+					file.filename = rs.getString("filename");
+					file.filetype = rs.getString("filetype");
+					file.filesize = rs.getInt("filesize");
+					filelist.add(file);
+				}
+			}
+			catch (Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					conn.close();
+				}
+				catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return filelist;
+
+	}
+
+	public int getVersion()
+	{
+		return version;
+	}
+
+	public void setVersion(int version)
+	{
+		this.version = version;
 	}
 
 	public static ArrayList<UserFile> getSharedFilesByUserID(int uid)

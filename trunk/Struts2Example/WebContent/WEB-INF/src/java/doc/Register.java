@@ -16,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class Register extends ActionSupport
 {
-	private String username, email, password;
+	private String username, email, password, password2;
 
 	private ResultSet rs;
 	private Connection conn;
@@ -39,19 +39,24 @@ public class Register extends ActionSupport
 		{
 			return ERROR;
 		}
-		if (username.isEmpty())
+		if (username == null || username.isEmpty())
 		{
 			addFieldError(username, "Username can not be empty");
 			return ERROR;
 		}
-		if (password.isEmpty())
+		if (password == null || password.isEmpty())
 		{
 			addFieldError(password, "Password can not be empty");
 			return ERROR;
 		}
-		if (email.isEmpty())
+		if (email == null || email.isEmpty())
 		{
 			addFieldError(email, "Email can not be empty");
+			return ERROR;
+		}
+		if (password2 == null || password != password2)
+		{
+			addFieldError(password2, "Password provided do not match");
 			return ERROR;
 		}
 		if ((User.findExistingUser(username)).equals("Exists"))
@@ -103,6 +108,16 @@ public class Register extends ActionSupport
 			}
 		}
 
+	}
+
+	public String getPassword2()
+	{
+		return password2;
+	}
+
+	public void setPassword2(String password2)
+	{
+		this.password2 = password2;
 	}
 
 	public String getUsername()

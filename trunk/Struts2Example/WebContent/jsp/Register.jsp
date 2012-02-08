@@ -37,11 +37,6 @@ function validateUser()
 			alert("Username Empty");
 			return false ;
 		}
-	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
-	  {
-	  alert("Not a valid e-mail address");
-	  return false;
-	  }
 	xmlHttp=GetXmlHttpObject();
 	var url="validateuser.action";
 	url=url+"?option=validateuser&username="+username;
@@ -93,6 +88,49 @@ function GetXmlHttpObject()
 	 }
 	return xmlHttp;
 }
+
+
+function validateEmail()
+{
+	var x=document.getElementById("Email").value;
+
+	var atpos=x.indexOf("@");
+	var dotpos=x.lastIndexOf(".");
+	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+	  {
+	  alert("Not a valid e-mail address");
+	  return false;
+	  }
+}
+
+function validatePass1()
+{
+	var pass1=document.getElementById("Password").value;
+	
+	if(pass1=="")
+	{
+		alert("Password can not be empty");
+		return false;
+	}
+}
+	function validatePass2()
+	{
+		var pass1=document.getElementById("Password").value;
+		var pass2=document.getElementById("Password2").value;
+		if(pass2=="")
+			{
+				alert("Please confirm the password");
+				pass2.focus();
+				return false;
+			}
+		else if(pass1!= pass2)
+			{
+				alert("Passwords do not match");
+				return false;
+			}
+}
+
+
 </script>
 </head>
 <body>
@@ -122,13 +160,13 @@ h1 {	font-size: 28px;	font-weight: normal;	color: #479332;	line-height: 32px;	ma
 							<td><s:textfield class="username" name="username" value=""	id="Username" label="Username:" onblur="validateUser()" /></td>
 						</tr>
 						<tr>
-							<td><s:textfield name="email" value="" id="Email"	label="Email:" /></td>
+							<td><s:textfield name="email" value="" id="Email"	label="Email:" onblur="validateEmail()"/></td>
 						</tr>
 						<tr>
-							<td><s:password name="password" class="password" value="" id="Password" label="Password:" /></td>
+							<td><s:password name="password" class="password" value="" id="Password" label="Password:" onblur="validatePass1()"/></td>
 						</tr>
 						<tr>
-							<td><s:password class="password2" name="password2" value="" id="Password2" label="Confirm password:" /></td>
+							<td><s:password class="password2" name="password2" value="" id="Password2" label="Confirm password:" onblur="validatePass2()"/></td>
 						</tr>
 						<tr>
 							<td><s:submit id="submit" type="image" src="/Struts2Example/media/images/create-account.png" onclick="return validateData();"  /></td>

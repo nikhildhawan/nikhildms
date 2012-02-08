@@ -27,7 +27,6 @@ function validateUser()
 			alert("Username Empty");
 			return false ;
 		}
-
 }
 
 function validateEmail()
@@ -62,7 +61,7 @@ else if(pass1!= pass2)
 		alert("Passwords do not match");
 		return false;
 	}
-	}
+}
 
 function stateChanged() 
 { 

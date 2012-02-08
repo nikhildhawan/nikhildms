@@ -20,15 +20,18 @@
 h1 {	padding: 0;	border: none;	background-color: transparent;	color: #227A0A;	font-weight: bold;}
 td {	padding-bottom: 10px;}
 td.label {	width: 80px; }
+a {text-decoration: none}
+a:hover{text-decoration: none}
 .meter-wrap{float:right;	position: relative;	border-radius: 10px;-moz-border-radius: 10px;	-webkit-border-radius: 10px;margin-top: 20px;	margin-left: 20px;}
 .meter-wrap #usagetext{display:none;color: #479332;font-size: 13px;}
 .meter-wrap:hover #usagetext {display:inline-block;color: #479332;font-size: 15px;}
 .meter-wrap, .meter-value, .meter-text {	width: 180px; height: 30px;-webkit-border-top-left-radius: 10px;-webkit-border-bottom-left-radius: 10px;-moz-border-radius-topleft: 10px;	-moz-border-radius-bottomleft: 10px;	border-top-left-radius: 10px;	border-bottom-left-radius: 10px;}
 .meter-wrap, .meter-value {	background: #bdbdbd;}
 .meter-text {	position: absolute;top:0; left:0;padding-top: 5px;color: #fff;text-align: center;	width: 100%;}
-.user-content {width:650px;border:1px solid #8ED17C;text-align:justify;padding: 25px 18px;margin-top: 65px;margin-left: auto;margin-right: auto;-moz-border-radius: 5px;-webkit-border-radius: 5px;}
+.user-content {width:800px;border:1px solid #8ED17C;text-align:justify;padding: 25px 18px;margin-top: 65px;margin-left: auto;margin-right: auto;-moz-border-radius: 5px;-webkit-border-radius: 5px;}
 .user-content .th-header {width: 150px;font-size: 28px;font-weight: normal;color: #479332;	line-height: 32px;margin: 25px 0 18px 0;padding: 0 0 4px;	background-color:transparent;border: none;	border-bottom:1px solid #CCCCCC; }
-.user-content .td-data ,.td-download {font-size: 16px;font-weight: normal;color: #479332;line-height: 20px;margin: 25px 0 18px 0;padding: 0 0 4px;background-color: transparent;border: none;}
+.user-content .td-data ,.td-download {vertical-align: text-top;;font-size: 16px;font-weight: normal;color: #479332;line-height: 20px;margin: 25px 0 18px 0;padding: 0 0 4px;background-color: transparent;border: none;}
+.user-content .td-download .dlimage{vertical-align:sub;}
 .user-content .td-data:hover {	background:#f2f7ff; }
 .user-content .td-data .share {display:none;}
 .user-content .td-data:hover .share {display:inline-block;cursor: pointer;}
@@ -118,7 +121,8 @@ td.label {	width: 80px; }
 				<table style="position: relative;float: center;top: 20px;">
 					<tr>
 						<th class="th-header" style="width:500px;">Files</th>
-						<th class="th-header">Download</th>
+						<th class="th-header">Version</th>
+						<th class="th-header">All Versions</th>
 					</tr>
 					<% if(session.getAttribute("usercurrentdirid") != session.getAttribute("userrootdirid")) { System.out.println("current folder id:"+session.getAttribute("usercurrentdirid")+": and root id:"+session.getAttribute("userrootdirid")+": are different"); %>
 					<tr>
@@ -140,7 +144,8 @@ td.label {	width: 80px; }
 								<span class="delete"   >&nbsp;&nbsp;&nbsp;&nbsp;<a href="deletefile?fileid=<s:property value="fileid" />"><img src="/Struts2Example/media/images/delete.gif" title="Delete File"></a></span>
 							</td>
 							
-							<td class="td-download"><a href="downloadfile?fileid=<s:property value="fileid" />">Download</a></td>
+							<td class="td-download"><a href="downloadfile?fileid=<s:property value="fileid" />"><img class="dlimage" src="/Struts2Example/media/images/dl_original.png" title="Download latest Version"><s:property value="version" /></a></td>
+							<td class="td-download"><a href="allversions?fileid=<s:property value="fileid" />" />All Versions</a></td>
 						</tr>
 					</s:iterator>
 				</table>

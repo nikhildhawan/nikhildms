@@ -58,7 +58,7 @@ public class Homepage extends ActionSupport
 				}
 				foldername = Directory.getFolderName(currentfid);
 				directories = Directory.getDirListByFolderId(currentfid, uid);
-				files = UserFile.getFileListByFolderId(currentfid, uid);
+				files = UserFile.getDistinctFileListByFolderId(currentfid, uid);
 				sharedfiles = UserFile.getSharedFilesByUserID(uid);
 				System.out.println(files.size() + " is size of files ");
 				System.out.println(sharedfiles.size() + " is size of shared files ");
